@@ -56,7 +56,7 @@ This package provides the Argus PAP service.
 %setup -n argus-pap
 
 %build
-mvn -U -B %{mvn_settings} package
+mvn -U -B package
 
 %install
 rm -rf $RPM_BUILD_ROOT

@@ -27,7 +27,7 @@ Group: System Environment/Daemons
 License: ASL 2.0
 URL: https://twiki.cern.ch/twiki/bin/view/EGEE/AuthorizationFramework
 
-Source: %{name}-%{version}.tar.gz
+Source: %{name}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch: noarch
 

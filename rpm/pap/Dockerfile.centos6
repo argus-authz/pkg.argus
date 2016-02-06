@@ -1,0 +1,10 @@
+FROM  italiangrid/pkg.base:centos6
+
+ENV BUILD_NAME argus-pap
+ENV BUILD_REPO git://github.com/argus-authz/argus-pap
+ENV BUILD_TAG develop
+ENV PKG_REPO git://github.com/argus-authz/pkg.argus.git
+ENV PKG_TAG develop
+ENV PKG_SPEC_FILE argus-pap/rpm/pap/argus-pap.spec
+
+USER build

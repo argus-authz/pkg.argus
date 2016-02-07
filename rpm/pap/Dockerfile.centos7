@@ -2,7 +2,7 @@ FROM  italiangrid/pkg.base:centos7
 
 ENV BUILD_NAME argus-pap
 ENV BUILD_REPO git://github.com/argus-authz/argus-pap
-ENV BUILD_TAG develop
+ENV BUILD_TAG 1_7
 ENV PKG_REPO git://github.com/argus-authz/pkg.argus.git
 ENV PKG_TAG develop
 ENV PKG_SPEC_FILE argus-pap/rpm/pap/argus-pap.spec

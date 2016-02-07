@@ -4,12 +4,6 @@
 %global base_version 1.7.0
 %global base_release 0
 
-%if %{?build_number:1}%{!?build_number:0}
-%define release_version 0.build.%{build_number}
-%else
-%define release_version %{base_release}
-%endif
-
 %if 0%{?rhel} == 5
 %define jdk_version 1.7.0
 %else
@@ -20,6 +14,12 @@
 %define maven maven
 %else
 %define maven apache-maven
+%endif
+
+%if %{?build_number:1}%{!?build_number:0}
+%define release_version 0.build.%{build_number}
+%else
+%define release_version %{base_release}
 %endif
 
 Name: argus-pdp
@@ -36,16 +36,17 @@ Source: %{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch: noarch
 
-BuildRequires: java-devel
-BuildRequires: jpackage-utils
+BuildRequires: java-%{jdk_version}-openjdk-devel
 BuildRequires: %{maven}
+BuildRequires: jpackage-utils
 
-Requires: java
+Requires: java-%{jdk_version}-openjdk
 Requires: jpackage-utils
 Requires: redhat-lsb
 Requires: argus-pdp-pep-common >= 1.5
+Requires: voms-api-java
 
-%description 
+%description
 Argus PDP (Policy Decision Point).
 The Argus Authorization Service renders consistent authorization 
 decisions for distributed services (e.g., user interfaces, 
@@ -136,19 +137,22 @@ fi
 %{_defaultdocdir}/argus/pdp/LICENSE
 %{_defaultdocdir}/argus/pdp/RELEASE-NOTES
 %dir %{_localstatedir}/lib/argus/pdp/lib
-%{_localstatedir}/lib/argus/pdp/lib/argus-pdp-%{version}.jar
+%{_localstatedir}/lib/argus/pdp/lib/argus-pdp-@@SPEC_VERSION@@.jar
+%{_localstatedir}/lib/argus/pdp/lib/activation-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/commons-codec-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/commons-collections-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/commons-httpclient-*.jar
-%{_localstatedir}/lib/argus/pdp/lib/commons-lang-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/commons-io-*.jar
+%{_localstatedir}/lib/argus/pdp/lib/commons-lang-*.jar
+%{_localstatedir}/lib/argus/pdp/lib/esapi-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/herasaf-xacml-core-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/ini4j-*.jar
+%{_localstatedir}/lib/argus/pdp/lib/javax.*.jar
+%{_localstatedir}/lib/argus/pdp/lib/jaxb-api-*.jar
+%{_localstatedir}/lib/argus/pdp/lib/jaxb-impl-*.jar
+%{_localstatedir}/lib/argus/pdp/lib/jaxb-xjc-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/jcl-over-slf4j-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/jetty-*.jar
-%{_localstatedir}/lib/argus/pdp/lib/jetty-java5-threadpool-*.jar
-%{_localstatedir}/lib/argus/pdp/lib/jetty-sslengine-*.jar
-%{_localstatedir}/lib/argus/pdp/lib/jetty-util-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/joda-time-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/jul-to-slf4j-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/log4j-over-slf4j-*.jar
@@ -157,8 +161,8 @@ fi
 %{_localstatedir}/lib/argus/pdp/lib/not-yet-commons-ssl-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/opensaml-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/openws-*.jar
-%{_localstatedir}/lib/argus/pdp/lib/servlet-api-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/slf4j-api-*.jar
+%{_localstatedir}/lib/argus/pdp/lib/stax-api-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/velocity-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/xmlsec-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/xmltooling-*.jar
@@ -169,19 +173,30 @@ fi
 %{_localstatedir}/lib/argus/pdp/lib/endorsed/xml-apis-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/endorsed/xml-resolver-*.jar
 %dir %{_localstatedir}/lib/argus/pdp/lib/provided
+%{_localstatedir}/lib/argus/pdp/lib/provided/bcpkix-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/provided/bcprov-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/provided/canl-*.jar
+%{_localstatedir}/lib/argus/pdp/lib/provided/voms-api-java-*.jar
 %dir %{_localstatedir}/log/argus/pdp
 
+%if 0%{?rhel} >= 7 || 0%{?fedora} >= 21
+/lib/systemd/system/argus-pdp.service
+%else
+%exclude /lib/systemd/system/argus-pdp.service
+%endif
+
 %changelog
-* Sat Feb 6 2016 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 1.7.0-0
-- Packaging for 1.7.0 version
+* Tue Nov 17 2015 Marco Caberletti <marco.caberletti@cnaf.infn.it> 1.7.0-1
+- Add systemd unit file.
+
+* Tue Sep 8 2015 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 1.7.0-0
+- Pre-release packaging for 1.7.0
 
 * Thu Oct  2 2014 Mischa Salle <msalle@nikhef.nl> 1.6.1-1
 - Replace exact versions, except argus-pdp, in filelist with wildcard.
 - Upstream version 1.6.1 for EMI-3.
 
-* Thu Nov 18 2012 Valery Tschopp <valery.tschopp@switch.ch> 1.6.0-1 
+* Sun Nov 18 2012 Valery Tschopp <valery.tschopp@switch.ch> 1.6.0-1 
 - Upstream version 1.6.0 for EMI-3.
 
 * Mon Jul 30 2012 Valery Tschopp <valery.tschopp@switch.ch> 1.5.2-1

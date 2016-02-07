@@ -39,6 +39,7 @@ Requires: canl-java
 Requires: bouncycastle-pkix
 
 %description
+Argus PAP (Policy Administration Point).
 
 Argus is a system meant to render consistent authorization decisions for
 distributed services (e.g. compute elements, portals). In order to achieve

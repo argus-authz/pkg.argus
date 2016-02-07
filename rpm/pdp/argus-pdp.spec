@@ -72,7 +72,6 @@ EMI services or components.
 %setup -q
 
 %build
-export JAVA_HOME=/usr/lib/jvm/java
 make package
 
 %install

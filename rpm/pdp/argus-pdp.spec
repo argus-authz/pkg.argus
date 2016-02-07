@@ -137,7 +137,7 @@ fi
 %{_defaultdocdir}/argus/pdp/LICENSE
 %{_defaultdocdir}/argus/pdp/RELEASE-NOTES
 %dir %{_localstatedir}/lib/argus/pdp/lib
-%{_localstatedir}/lib/argus/pdp/lib/argus-pdp-@@SPEC_VERSION@@.jar
+%{_localstatedir}/lib/argus/pdp/lib/argus-pdp-%{version}.jar
 %{_localstatedir}/lib/argus/pdp/lib/activation-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/commons-codec-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/commons-collections-*.jar

@@ -33,6 +33,7 @@ and returns a user mapping.
 
 %prep
 %setup -q
+./autotools.sh
 
 %build
 %configure

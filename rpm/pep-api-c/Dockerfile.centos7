@@ -1,5 +1,7 @@
 FROM  italiangrid/pkg.base:centos7
 
+RUN yum -y install libcurl-devel
+
 ENV BUILD_NAME argus-pep-api-c
 ENV BUILD_REPO git://github.com/argus-authz/argus-pep-api-c
 ENV BUILD_TAG 2_3

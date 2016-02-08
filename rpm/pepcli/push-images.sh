@@ -2,7 +2,7 @@
 set -ex
 tags="centos5 centos6 centos7"
 
-IMAGE_TAG=argus-authz/pkg.argus-pep-cli
+IMAGE_TAG=argus-authz/pkg.argus-pepcli
 
 if [ -z "${DOCKER_REGISTRY_HOST}" ]; then
   echo "Please define the DOCKER_REGISTRY_HOST environment variable before running this script."

@@ -23,6 +23,7 @@ for c in ${COMPONENTS}; do
 
   docker run --volumes-from ${stage_area_name} --volumes-from ${MVN_REPO_CONTAINER_NAME} \
     -v ${PKG_REPO_DIR}:/pkg-repo:ro \
+    -v ${PACKAGES_DIR}:/packages:rw \
     -ti ${build_env} \
     -e PKG_REPO=file:///pkg-repo \
     argus-authz/pkg.argus-$c:${PLATFORM}

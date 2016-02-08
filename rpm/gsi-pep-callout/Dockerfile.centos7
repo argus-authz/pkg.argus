@@ -1,5 +1,10 @@
 FROM  italiangrid/pkg.base:centos7
 
+RUN yum -y install globus-gridmap-callout-error-devel \
+  globus-gssapi-gsi-devel \
+  globus-gssapi-error-devel \
+  globus-gss-assist-devel
+
 ENV BUILD_NAME argus-gsi-pep-callout
 ENV BUILD_REPO git://github.com/argus-authz/argus-gsi-pep-callout
 ENV BUILD_TAG 1_3

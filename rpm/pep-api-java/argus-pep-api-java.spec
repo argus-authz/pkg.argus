@@ -57,7 +57,6 @@ action on a particular service.
 %setup -q
 
 %build
-export JAVA_HOME=/usr/lib/jvm/java
 make package
 
 %install
@@ -86,6 +85,3 @@ rm -rf $RPM_BUILD_ROOT
 
 * Tue Apr 3 2012 Valery Tschopp <valery.tschopp@switch.ch> 2.1.0-1
 - Initial PEP client Java API for EMI 2.
-
-
-

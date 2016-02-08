@@ -1,0 +1,11 @@
+FROM  italiangrid/pkg.base:centos5
+
+ENV BUILD_NAME argus-pep-api-java
+ENV BUILD_REPO git://github.com/argus-authz/argus-pep-api-java
+ENV BUILD_TAG 2_3
+ENV PKG_REPO git://github.com/argus-authz/pkg.argus.git
+ENV PKG_TAG master
+ENV PKG_SPEC_FILE argus-pep-api-java/rpm/pep-api-java/argus-pep-api-java.spec
+ENV TARBALL_VERSION_REQUIRED 1
+
+USER build

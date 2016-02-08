@@ -1,0 +1,13 @@
+FROM  italiangrid/pkg.base:centos7
+
+ENV BUILD_NAME argus-gsi-pep-callout
+ENV BUILD_REPO git://github.com/argus-authz/argus-gsi-pep-callout
+ENV BUILD_TAG 1_3
+ENV PKG_REPO git://github.com/argus-authz/pkg.argus.git
+ENV PKG_TAG master
+ENV PKG_SPEC_FILE argus-gsi-pep-callout/rpm/gsi-pep-callout/argus-gsi-pep-callout.spec
+ENV PKG_PREBUILD_SCRIPT argus-gsi-pep-callout/rpm/gsi-pep-callout/pre-build.sh
+
+ENV TARBALL_VERSION_REQUIRED 1
+
+USER build

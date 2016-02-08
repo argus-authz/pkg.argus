@@ -52,6 +52,7 @@ This package contains the development libraries.
 %prep
 echo "XXX:macros: dist=%{?dist} el5=%{?el5} rhel=%{?rhel}"
 %setup -q
+./autotools.sh
 
 %build
 %configure

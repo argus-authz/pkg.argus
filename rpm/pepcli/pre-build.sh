@@ -1,5 +1,5 @@
 #!/bin/bash
 set -ex
 
-sudo yum update
+sudo yum clean all
 sudo yum -y install argus-pep-api-c-devel

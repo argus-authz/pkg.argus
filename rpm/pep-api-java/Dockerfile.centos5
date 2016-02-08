@@ -6,6 +6,7 @@ ENV BUILD_TAG 2_3
 ENV PKG_REPO git://github.com/argus-authz/pkg.argus.git
 ENV PKG_TAG master
 ENV PKG_SPEC_FILE argus-pep-api-java/rpm/pep-api-java/argus-pep-api-java.spec
+ENV PKG_PREBUILD_SCRIPT argus-pep-api-java/rpm/pep-api-java/pre-build.sh
 ENV TARBALL_VERSION_REQUIRED 1
 
 USER build

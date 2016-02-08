@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ex
 
-IMAGE_TAG=argus-authz/pkg.argus-pep-api-c
+IMAGE_TAG=argus-authz/pkg.argus-pep-cli
 tags=${tags:-"centos5 centos6 centos7"}
 
 for t in ${tags}; do

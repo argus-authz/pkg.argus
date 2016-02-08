@@ -1,0 +1,13 @@
+FROM  italiangrid/pkg.base:centos6
+
+ENV BUILD_NAME argus-pepcli
+ENV BUILD_REPO git://github.com/argus-authz/argus-pep-cli
+ENV BUILD_TAG 2_2
+ENV PKG_REPO git://github.com/argus-authz/pkg.argus.git
+ENV PKG_TAG master
+ENV PKG_SPEC_FILE argus-pepcli/rpm/pepcli/argus-pepcli.spec
+ENV PKG_PREBUILD_SCRIPT argus-pepcli/rpm/pepcli/pre-build.sh
+
+ENV TARBALL_VERSION_REQUIRED 1
+
+USER build

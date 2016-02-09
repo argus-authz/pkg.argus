@@ -38,7 +38,7 @@ for c in ${COMPONENTS}; do
     build_env="${build_env} -e PKG_REPO=file:///pkg-repo"
   fi
 
-  image_name="argus-authz/pkg-argus-${c}:${PLATFORM}"
+  image_name="argus-authz/pkg.argus-${c}:${PLATFORM}"
 
   if [ -n "${USE_DOCKER_REGISTRY}" ]; then
     image_name="${DOCKER_REGISTRY_HOST}/${image_name}"

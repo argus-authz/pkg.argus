@@ -17,10 +17,16 @@
 %define maven apache-maven
 %endif
 
+%if %{?build_number:1}%{!?build_number:0}
+%define release_version 0.build.%{build_number}
+%else
+%define release_version %{base_release}
+%endif
+
 Name: argus-pap
 
-Version: 1.7.0
-Release: 0%{?dist}
+Version: %{base_version}
+Release: %{release_version}%{?dist}
 Summary: Argus PAP service
 
 Group: System Environment/Daemons

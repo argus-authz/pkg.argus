@@ -27,8 +27,8 @@ for c in ${COMPONENTS}; do
     build_env="${build_env} -e ${line}"
   done < "$c/build-env"
 
-  if [ -n "${BUILD_NUMBER}" ]; then
-    build_env="${build_env} -e BUILD_NUMBER=${BUILD_NUMBER}"
+  if [ -n "${PKG_BUILD_NUMBER}" ]; then
+    build_env="${build_env} -e BUILD_NUMBER=${PKG_BUILD_NUMBER}"
   fi
 
   volumes_conf="-v ${PACKAGES_DIR}:/packages:rw"

@@ -46,7 +46,7 @@ for c in ${COMPONENTS}; do
 
   docker pull ${image_name}
 
-  docker run -ti --volumes-from ${stage_area_name} --volumes-from ${MVN_REPO_CONTAINER_NAME} \
+  docker run -i --volumes-from ${stage_area_name} --volumes-from ${MVN_REPO_CONTAINER_NAME} \
     ${volumes_conf} \
     ${build_env} \
     ${image_name}

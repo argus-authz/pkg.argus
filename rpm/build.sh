@@ -18,14 +18,14 @@ else
   mvn_repo_name=${MVN_REPO_CONTAINER_NAME}
 fi
 
-# Create stage area data container, if no container is provided
-if [ -z ${STAGE_AREA_CONTAINER_NAME+x} ]; then
-  stage_area_name=$(basename $(mktemp -u -t stage-area-XXXXX))
-  # Create stage area container
-  docker create -v /stage-area --name ${stage_area_name} ${pkg_base_image_name}
-else
-  stage_area_name="${STAGE_AREA_CONTAINER_NAME}"
-fi
+## Create stage area data container, if no container is provided
+#if [ -z ${STAGE_AREA_CONTAINER_NAME+x} ]; then
+  #stage_area_name=$(basename $(mktemp -u -t stage-area-XXXXX))
+  ## Create stage area container
+  #docker create -v /stage-area --name ${stage_area_name} ${pkg_base_image_name}
+#else
+  #stage_area_name="${STAGE_AREA_CONTAINER_NAME}"
+#fi
 
 # Run packaging
 for c in ${COMPONENTS}; do
@@ -41,7 +41,11 @@ for c in ${COMPONENTS}; do
   fi
 
   if [ -n "${PKG_PACKAGES_DIR}" ]; then
-    build_env="${build_env} -e PKG_PACKAGES_DIR=${PKG_BUILD_NUMBER}"
+    build_env="${build_env} -e PKG_PACKAGES_DIR=${PKG_PACKAGES_DIR}"
+  fi
+
+  if [ -n "${PKG_STAGE_DIR}" ]; then
+    build_env="${build_env} -e PKG_STAGE_DIR=${PKG_STAGE_DIR}"
   fi
 
   if [ -n "${PKG_REPO}" ]; then

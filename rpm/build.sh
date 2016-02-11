@@ -2,12 +2,7 @@
 set -ex
 
 PLATFORM=${PLATFORM:-centos6}
-PACKAGES_DIR=${PACKAGES_DIR:-packages}
-MVN_REPO_CONTAINER_NAME=${MVN_REPO_CONTAINER_NAME:-maven-repo}
 COMPONENTS=${COMPONENTS:-"pap pdp-pep-common pep-common pdp pep-server pep-api-c pep-api-java pepcli gsi-pep-callout"}
-
-# Create packages dir, if needed
-mkdir -p ${PACKAGES_DIR}
 
 pkg_base_image_name="italiangrid/pkg.base:${PLATFORM}"
 
@@ -49,13 +44,13 @@ for c in ${COMPONENTS}; do
     volumes_conf="${volumes_conf} --volumes-from ${DATA_CONTAINER_NAME}"
 
     if [ -n "${DATA_PREFIX}" ]; then
-      volumes_conf="-v ${DATA_PREFIX}/${PACKAGES_DIR}:/packages:rw"
-      volumes_conf="-v ${DATA_PREFIX}/pkg-repo:/pkg-repo:ro"
-      build_env="${build_env} -e PKG_REPO=file:///pkg-repo"
+      build_env="${build_env} -e PKG_REPO=file:///${DATA_PREFIX}/pkg.argus -e PKG_PACKAGES_DIR=${DATA_PREFIX}/packages"
     fi
   else
 
-    volumes_conf="-v ${PACKAGES_DIR}:/packages:rw"
+    if [ -n "${PACKAGES_DIR}" ]; then
+      volumes_conf="-v ${PACKAGES_DIR}:/packages:rw"
+    fi
 
     if [ -n "${PKG_REPO_DIR}" ]; then
       volumes_conf="${volumes_conf} -v ${PKG_REPO_DIR}:/pkg-repo:ro"
@@ -80,7 +75,7 @@ for c in ${COMPONENTS}; do
 
   docker pull ${image_name}
 
-  docker run -i --volumes-from ${stage_area_name} --volumes-from ${MVN_REPO_CONTAINER_NAME} \
+  docker run -i --volumes-from ${stage_area_name} --volumes-from ${mvn_repo_name} \
     ${volumes_conf} \
     ${build_env} \
     ${image_name}

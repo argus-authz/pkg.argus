@@ -45,6 +45,7 @@ for c in ${COMPONENTS}; do
   fi
 
   if [ -n "${PKG_STAGE_DIR}" ]; then
+    volumes_conf="${volumes_conf} -v ${PKG_STAGE_DIR}:/stage-area/${PLATFORM}"
     build_env="${build_env} -e PKG_STAGE_DIR=${PKG_STAGE_DIR}"
   fi
 

@@ -40,22 +40,16 @@ for c in ${COMPONENTS}; do
     build_env="${build_env} -e BUILD_NUMBER=${PKG_BUILD_NUMBER}"
   fi
 
+  if [ -n "${PKG_PACKAGES_DIR}" ]; then
+    build_env="${build_env} -e PKG_PACKAGES_DIR=${PKG_BUILD_NUMBER}"
+  fi
+
+  if [ -n "${PKG_REPO}" ]; then
+    build_env="${build_env} -e PKG_REPO=${PKG_REPO}"
+  fi
+
   if [ -n "${DATA_CONTAINER_NAME}" ]; then
     volumes_conf="${volumes_conf} --volumes-from ${DATA_CONTAINER_NAME}"
-
-    if [ -n "${DATA_PREFIX}" ]; then
-      build_env="${build_env} -e PKG_REPO=file:///${DATA_PREFIX}/pkg.argus -e PKG_PACKAGES_DIR=${DATA_PREFIX}/packages"
-    fi
-  else
-
-    if [ -n "${PACKAGES_DIR}" ]; then
-      volumes_conf="-v ${PACKAGES_DIR}:/packages:rw"
-    fi
-
-    if [ -n "${PKG_REPO_DIR}" ]; then
-      volumes_conf="${volumes_conf} -v ${PKG_REPO_DIR}:/pkg-repo:ro"
-      build_env="${build_env} -e PKG_REPO=file:///pkg-repo"
-    fi
   fi
 
   if [ -n "${STAGE_ALL}" ]; then

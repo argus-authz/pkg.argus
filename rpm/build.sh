@@ -18,15 +18,6 @@ else
   mvn_repo_name=${MVN_REPO_CONTAINER_NAME}
 fi
 
-## Create stage area data container, if no container is provided
-#if [ -z ${STAGE_AREA_CONTAINER_NAME+x} ]; then
-  #stage_area_name=$(basename $(mktemp -u -t stage-area-XXXXX))
-  ## Create stage area container
-  #docker create -v /stage-area --name ${stage_area_name} ${pkg_base_image_name}
-#else
-  #stage_area_name="${STAGE_AREA_CONTAINER_NAME}"
-#fi
-
 # Run packaging
 for c in ${COMPONENTS}; do
   build_env=""
@@ -58,24 +49,11 @@ for c in ${COMPONENTS}; do
   fi
 
   if [ -n "${STAGE_ALL}" ]; then
-    if [[ ${build_env} == *"PKG_STAGE_RPMS"* ]]
-    then
-      echo "PKG_STAGE_RPMS already set by build-env for this build"
-    else
       build_env="${build_env} -e PKG_STAGE_RPMS=1"
-    fi
   fi
-
-  image_name="argus-authz/pkg.argus-${c}:${PLATFORM}"
-
-  if [ -n "${USE_DOCKER_REGISTRY}" ]; then
-    image_name="${DOCKER_REGISTRY_HOST}/${image_name}"
-  fi
-
-  docker pull ${image_name}
 
   docker run -i --volumes-from ${mvn_repo_name} \
     ${volumes_conf} \
     ${build_env} \
-    ${image_name}
+    ${pkg_base_image_name}
 done

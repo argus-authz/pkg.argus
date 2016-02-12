@@ -1,2 +1,9 @@
+BUILD_NAME=argus-pep-api-java
+BUILD_REPO=git://github.com/argus-authz/argus-pep-api-java
+BUILD_TAG=2_3
+PKG_REPO=git://github.com/argus-authz/pkg.argus.git
+PKG_TAG=master
+PKG_SPEC_FILE=argus-pep-api-java/rpm/pep-api-java/argus-pep-api-java.spec
+PKG_PREBUILD_SCRIPT=argus-pep-api-java/rpm/pep-api-java/pre-build.sh
 PKG_STAGE_RPMS=1
 TARBALL_VERSION=2.3.0

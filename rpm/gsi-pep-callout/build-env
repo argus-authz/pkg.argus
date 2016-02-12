@@ -1,2 +1,9 @@
+BUILD_NAME=argus-gsi-pep-callout
+BUILD_REPO=git://github.com/argus-authz/argus-gsi-pep-callout
+BUILD_TAG=1_3
+PKG_REPO=git://github.com/argus-authz/pkg.argus.git
+PKG_TAG=master
+PKG_SPEC_FILE=argus-gsi-pep-callout/rpm/gsi-pep-callout/argus-gsi-pep-callout.spec
+PKG_PREBUILD_SCRIPT=argus-gsi-pep-callout/rpm/gsi-pep-callout/pre-build.sh
 PKG_STAGE_RPMS=1
 TARBALL_VERSION=1.3.1

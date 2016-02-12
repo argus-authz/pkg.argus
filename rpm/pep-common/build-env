@@ -1,2 +1,8 @@
+BUILD_NAME=argus-pep-common
+BUILD_REPO=git://github.com/argus-authz/argus-pep-common
+BUILD_TAG=2_3
+PKG_REPO=git://github.com/argus-authz/pkg.argus.git
+PKG_TAG=master
+PKG_SPEC_FILE=argus-pep-common/rpm/pep-common/argus-pep-common.spec
 PKG_STAGE_RPMS=1
 TARBALL_VERSION=2.3.1

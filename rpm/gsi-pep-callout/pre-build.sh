@@ -1,5 +1,5 @@
-#!/bin/bash
-set -ex
-
-sudo yum clean all
-sudo yum -y install argus-pep-api-c-devel
+yum -y install globus-gridmap-callout-error-devel \
+  globus-gssapi-gsi-devel \
+  globus-gssapi-error-devel \
+  globus-gss-assist-devel \
+  argus-pep-api-c-devel

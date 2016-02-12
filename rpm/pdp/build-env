@@ -1,1 +1,7 @@
+BUILD_NAME=argus-pdp
+BUILD_REPO=git://github.com/argus-authz/argus-pdp
+BUILD_TAG=1_7
+PKG_REPO=git://github.com/argus-authz/pkg.argus.git
+PKG_TAG=master
+PKG_SPEC_FILE=argus-pdp/rpm/pdp/argus-pdp.spec
 TARBALL_VERSION=1.7.0

@@ -1,6 +1,6 @@
 #!/bin/bash
 set -ex
-tags="centos5 centos6 centos7"
+tags=${tags:-"centos5 centos6 centos7"}
 
 IMAGE_TAG=argus-authz/pkg.argus-pep-common
 

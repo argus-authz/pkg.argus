@@ -52,6 +52,10 @@ for c in ${COMPONENTS}; do
       build_env="${build_env} -e PKG_STAGE_RPMS=1"
   fi
 
+  if [ -n "${PKG_TAG}" ]; then
+    build_env="${build_env} -e PKG_TAG=${PKG_TAG}"
+  fi
+
   docker run -i --volumes-from ${mvn_repo_name} \
     ${volumes_conf} \
     ${build_env} \

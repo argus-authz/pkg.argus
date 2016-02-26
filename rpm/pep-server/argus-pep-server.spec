@@ -1,7 +1,7 @@
 # Turn off the brp-java-repack-jars script
 %global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-java-repack-jars[[:space:]].*$!!g')
 
-%global base_version 1.7.0
+%global base_version 1.7.1
 %global base_release 0
 
 %if 0%{?rhel} == 5

@@ -39,6 +39,14 @@ for c in ${COMPONENTS}; do
     build_env="${build_env} -e PKG_STAGE_DIR=${PKG_STAGE_DIR}"
   fi
 
+  if [ -n "${BUILD_REPO}" ]; then
+    build_env="${build_env} -e BUILD_REPO=${BUILD_REPO}"
+  fi
+
+  if [ -n "${PKG_TAG}" ]; then
+    build_env="${build_env} -e PKG_TAG=${PKG_TAG}"
+  fi
+
   if [ -n "${PKG_REPO}" ]; then
     build_env="${build_env} -e PKG_REPO=${PKG_REPO}"
   fi
@@ -58,5 +66,6 @@ for c in ${COMPONENTS}; do
   docker run -i --volumes-from ${mvn_repo_name} \
     ${volumes_conf} \
     ${build_env} \
+    ${DOCKER_ARGS} \
     ${pkg_base_image_name}
 done

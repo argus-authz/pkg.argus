@@ -48,25 +48,25 @@ Requires: voms-api-java
 
 %description
 Argus PDP (Policy Decision Point).
-The Argus Authorization Service renders consistent authorization 
-decisions for distributed services (e.g., user interfaces, 
-portals, computing elements, storage elements). The service is 
-based on the XACML standard, and uses authorization policies to 
-determine if a user is allowed or denied to perform a certain 
+The Argus Authorization Service renders consistent authorization
+decisions for distributed services (e.g., user interfaces,
+portals, computing elements, storage elements). The service is
+based on the XACML standard, and uses authorization policies to
+determine if a user is allowed or denied to perform a certain
 action on a particular service.
-The Argus Authorization Service is composed of three main 
+The Argus Authorization Service is composed of three main
 components:
-- The Policy Administration Point (PAP) provides the tools to 
-author authorization policies, organize them in the local 
+- The Policy Administration Point (PAP) provides the tools to
+author authorization policies, organize them in the local
 repository and configure policy distribution among remote PAPs.
-- The Policy Decision Point (PDP) implements the authorization 
+- The Policy Decision Point (PDP) implements the authorization
 engine, and is responsible for the evaluation of the authorization
 requests against the XACML policies retrieved from the PAP.
-- The Policy Enforcement Point Server (PEP Server) ensures the 
-integrity and consistency of the authorization requests received 
-from the PEP clients. Lightweight PEP client libraries are also 
-provided to ease the integration and interoperability with other 
-EMI services or components. 
+- The Policy Enforcement Point Server (PEP Server) ensures the
+integrity and consistency of the authorization requests received
+from the PEP clients. Lightweight PEP client libraries are also
+provided to ease the integration and interoperability with other
+EMI services or components.
 
 %prep
 %setup -q
@@ -86,14 +86,14 @@ rm -rf $RPM_BUILD_ROOT
 # on upgrade (2): stop the service, and clean up the lib directory
 if [ $1 -eq 2 ] ; then
     /sbin/service argus-pdp stop > /dev/null 2>&1 || :
-    # delete old jar 
+    # delete old jar
     find /var/lib/argus/pdp/lib -name "*.jar" -exec rm {} \;
 fi
 
 %post
 # on install (1): register the service in init.d
 # on upgrade (2): nothing
-if [ $1 -eq 1 ]; then 
+if [ $1 -eq 1 ]; then
     /sbin/chkconfig --add argus-pdp
 fi
 # correct files/dirs permission
@@ -111,14 +111,13 @@ fi
 
 %postun
 # on uninstall (0): nothing
-# on upgrade (1): restart the service 
+# on upgrade (1): restart the service
 if [ $1 -eq 1 ] ; then
     /sbin/service argus-pdp start
 fi
 
 %files
 %defattr(-,root,root,-)
-%{_sysconfdir}/init.d/argus-pdp
 %dir %{_sysconfdir}/argus/pdp
 %config(noreplace) %{_sysconfdir}/argus/pdp/logging.xml
 %config(noreplace) %{_sysconfdir}/argus/pdp/pdp.ini
@@ -179,12 +178,17 @@ fi
 %dir %{_localstatedir}/log/argus/pdp
 
 %if 0%{?rhel} >= 7 || 0%{?fedora} >= 21
+%exclude %{_sysconfdir}/init.d/argus-pdp
 /lib/systemd/system/argus-pdp.service
 %else
 %exclude /lib/systemd/system/argus-pdp.service
+%{_sysconfdir}/init.d/argus-pdp
 %endif
 
 %changelog
+* Mon Apr 11 2016 Marco Caberletti <marco.caberletti@cnaf.infn.it> 1.7.0-2
+- Exclude sysV init script for EL7.
+
 * Tue Nov 17 2015 Marco Caberletti <marco.caberletti@cnaf.infn.it> 1.7.0-1
 - Add systemd unit file.
 
@@ -195,7 +199,7 @@ fi
 - Replace exact versions, except argus-pdp, in filelist with wildcard.
 - Upstream version 1.6.1 for EMI-3.
 
-* Sun Nov 18 2012 Valery Tschopp <valery.tschopp@switch.ch> 1.6.0-1 
+* Sun Nov 18 2012 Valery Tschopp <valery.tschopp@switch.ch> 1.6.0-1
 - Upstream version 1.6.0 for EMI-3.
 
 * Mon Jul 30 2012 Valery Tschopp <valery.tschopp@switch.ch> 1.5.2-1

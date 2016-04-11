@@ -107,7 +107,6 @@ fi
 %files
 
 %defattr(-,root,root,-)
-%{_initrddir}/argus-pap
 
 %dir %{_sysconfdir}/argus/pap
 
@@ -148,12 +147,17 @@ fi
 %dir %{_localstatedir}/log/argus/pap
 
 %if 0%{?rhel} >= 7 || 0%{?fedora} >= 21
+%exclude %{_initrddir}/argus-pap
 /lib/systemd/system/argus-pap.service
 %else
 %exclude /lib/systemd/system/argus-pap.service
+%{_initrddir}/argus-pap
 %endif
 
 %changelog
+* Mon Apr 11 2016 Marco Caberletti <marco.caberletti@cnaf.infn.it> 1.7.0-2
+- Exclude sysV init script for EL7.
+
 * Tue Nov 17 2015 Marco Caberletti <marco.caberletti at cnaf.infn.it> - 1.7.0-0
 - Support for Systemd
 

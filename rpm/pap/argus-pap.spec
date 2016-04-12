@@ -86,15 +86,22 @@ if [ $1 -gt 1 ] ; then
     fi
 fi
 
+%post
+if [ `pidof systemd` ]; then
+	/usr/bin/systemctl daemon-reload
+fi
+
 %preun
 if [ $1 -eq 0 ] ; then
     /sbin/service argus-pap stop > /dev/null 2>&1 || :
-    /sbin/chkconfig --del argus-pap
+	if [ ! `pidof systemd` ]; then
+    	/sbin/chkconfig --del argus-pap
+	fi
 fi
 
 
 # register the service in init.d
-if [ $1 -eq 1 ]; then
+if [ $1 -eq 1 && ! `pidof systemd` ]; then
     /sbin/chkconfig --add argus-pap
 fi
 

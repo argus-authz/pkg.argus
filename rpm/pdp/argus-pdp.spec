@@ -93,20 +93,25 @@ fi
 %post
 # on install (1): register the service in init.d
 # on upgrade (2): nothing
-if [ $1 -eq 1 ]; then
+if [ $1 -eq 1 ] && [ -z `pidof systemd` ] ; then
     /sbin/chkconfig --add argus-pdp
 fi
 # correct files/dirs permission
 chmod -f 640 %{_sysconfdir}/argus/pdp/pdp.ini
 chmod -f 750 %{_datadir}/argus/pdp/sbin/pdpctl
 chmod -f 750 %{_localstatedir}/log/argus/pdp
+if [ `pidof systemd` ]; then
+	/usr/bin/systemctl daemon-reload
+fi
 
 %preun
 # on uninstall (0): stop and deregister the service
 # on upgrade (1): nothing
 if [ $1 -eq 0 ] ; then
     /sbin/service argus-pdp stop > /dev/null 2>&1 || :
-    /sbin/chkconfig --del argus-pdp
+	if [ ! `pidof systemd` ]; then
+    	/sbin/chkconfig --del argus-pdp
+	fi
 fi
 
 %postun

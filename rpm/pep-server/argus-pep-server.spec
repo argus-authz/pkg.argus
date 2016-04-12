@@ -97,13 +97,17 @@ fi
 %post
 # on install (1): register the service in init.d
 # on upgrade (2): nothing
-if [ $1 -eq 1 ]; then
+if [ $1 -eq 1 ] && [ -z `pidof systemd` ] ; then
     /sbin/chkconfig --add argus-pepd
 fi
 # correct files/dirs permission
 chmod -f 640 %{_sysconfdir}/argus/pepd/pepd.ini
 chmod -f 750 %{_datadir}/argus/pepd/sbin/pepdctl
 chmod -f 750 %{_localstatedir}/log/argus/pepd
+if [ `pidof systemd` ]; then
+	/usr/bin/systemctl daemon-reload
+fi
+
 
 
 %preun
@@ -111,7 +115,9 @@ chmod -f 750 %{_localstatedir}/log/argus/pepd
 # on upgrade (1): nothing
 if [ $1 -eq 0 ] ; then
     /sbin/service argus-pepd stop > /dev/null 2>&1 || :
-    /sbin/chkconfig --del argus-pepd
+	if [ ! `pidof systemd` ]; then
+    	/sbin/chkconfig --del argus-pepd
+	fi
 fi
 
 %postun

@@ -42,7 +42,6 @@ BuildRequires: java-%{jdk_version}-openjdk-devel
 
 Requires: java-%{jdk_version}-openjdk
 Requires: canl-java
-Requires: bouncycastle-pkix
 
 %description
 Argus PAP (Policy Administration Point).

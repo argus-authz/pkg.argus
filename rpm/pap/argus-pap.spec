@@ -41,7 +41,7 @@ BuildRequires: %{maven}
 BuildRequires: java-%{jdk_version}-openjdk-devel
 
 Requires: java-%{jdk_version}-openjdk
-Requires: canl-java
+Requires: voms-api-java
 
 %description
 Argus PAP (Policy Administration Point).

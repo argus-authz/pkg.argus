@@ -1,15 +1,22 @@
+%global base_version 1.7.0
+%global base_release 0
+
+%if %{?build_number:1}%{!?build_number:0}
+%define release_version 0.build.%{build_number}
+%else
+%define release_version %{base_release}
+%endif
+
 Name: argus-authz
 
-Version: @@SPEC_VERSION@@
-Release: @@SPEC_RELEASE@@%{?dist}
+Version: %{base_version}
+Release: %{release_version}%{?dist}
 Summary: Argus Authorization Service meta-package (PAP, PDP and PEP Server)
 
 Group: System Environment/Daemons
 License: ASL 2.0
-URL: https://twiki.cern.ch/twiki/bin/view/EGEE/AuthorizationFramework
+URL: http://argus-authz.github.io/
 
-#Source:
-#BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch: noarch
 
 Requires: argus-pap

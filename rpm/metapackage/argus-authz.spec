@@ -25,6 +25,7 @@ Requires: argus-pep-server
 Requires: argus-pepcli
 Requires: bdii
 Requires: lcg-expiregridmapdir
+Requires: fetch-crl
 
 %description
 Argus meta-package (PAP, PDP and PEP Server).

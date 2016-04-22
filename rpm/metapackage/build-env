@@ -1,6 +1,6 @@
 BUILD_NAME=argus-metapackage
-BUILD_REPO=/tmp/local_repo/argus-metapackage/.git
-BUILD_TAG=issue/issue-1
+BUILD_REPO=git://github.com/argus-authz/argus-metapackage.git
+BUILD_TAG=master
 PKG_REPO=git://github.com/argus-authz/pkg.argus.git
 PKG_TAG=master
 PKG_SPEC_FILE=argus-metapackage/rpm/metapackage/argus-authz.spec

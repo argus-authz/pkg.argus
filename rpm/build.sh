@@ -2,7 +2,7 @@
 set -ex
 
 PLATFORM=${PLATFORM:-centos6}
-COMPONENTS=${COMPONENTS:-"pap pdp-pep-common pep-common pdp pep-server pep-api-c pep-api-java pepcli gsi-pep-callout"}
+COMPONENTS=${COMPONENTS:-"pap pdp-pep-common pep-common pdp pep-server pep-api-c pep-api-java pepcli gsi-pep-callout metapackage"}
 
 pkg_base_image_name="italiangrid/pkg.base:${PLATFORM}"
 

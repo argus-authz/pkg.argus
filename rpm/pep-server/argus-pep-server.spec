@@ -1,7 +1,7 @@
 # Turn off the brp-java-repack-jars script
 %global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-java-repack-jars[[:space:]].*$!!g')
 
-%global base_version 1.7.1
+%global base_version 1.7.2
 %global base_release 0
 
 %if 0%{?rhel} == 5
@@ -187,6 +187,9 @@ fi
 %endif
 
 %changelog
+* Tue Sep 8 2015 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 1.7.2-0
+- Pre-release packaging for 1.7.2
+
 * Tue Nov 17 2015 Marco Caberletti <marco.caberletti@cnaf.infn.it> 1.7.0-1
 - Add systemd unit file.
 

@@ -187,7 +187,7 @@ fi
 %endif
 
 %changelog
-* Tue Sep 8 2015 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 1.7.2-0
+* Thu May 5 2016 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 1.7.2-0
 - Pre-release packaging for 1.7.2
 
 * Tue Nov 17 2015 Marco Caberletti <marco.caberletti@cnaf.infn.it> 1.7.0-1

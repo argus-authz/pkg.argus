@@ -47,28 +47,28 @@ Requires: argus-pep-common >= 2.3
 Requires: argus-pdp-pep-common >= 1.5
 Requires: voms-api-java
 
-%description 
+%description
 Argus PEP (Policy Enforcement Point) Server.
-The Argus Authorization Service renders consistent authorization 
-decisions for distributed services (e.g., user interfaces, 
-portals, computing elements, storage elements). The service is 
-based on the XACML standard, and uses authorization policies to 
-determine if a user is allowed or denied to perform a certain 
+The Argus Authorization Service renders consistent authorization
+decisions for distributed services (e.g., user interfaces,
+portals, computing elements, storage elements). The service is
+based on the XACML standard, and uses authorization policies to
+determine if a user is allowed or denied to perform a certain
 action on a particular service.
 .
-The Argus Authorization Service is composed of three main 
+The Argus Authorization Service is composed of three main
 components:
-- The Policy Administration Point (PAP) provides the tools to 
-author authorization policies, organize them in the local 
+- The Policy Administration Point (PAP) provides the tools to
+author authorization policies, organize them in the local
 repository and configure policy distribution among remote PAPs.
-- The Policy Decision Point (PDP) implements the authorization 
+- The Policy Decision Point (PDP) implements the authorization
 engine, and is responsible for the evaluation of the authorization
 requests against the XACML policies retrieved from the PAP.
-- The Policy Enforcement Point Server (PEP Server) ensures the 
-integrity and consistency of the authorization requests received 
-from the PEP clients. Lightweight PEP client libraries are also 
-provided to ease the integration and interoperability with other 
-EMI services or components. 
+- The Policy Enforcement Point Server (PEP Server) ensures the
+integrity and consistency of the authorization requests received
+from the PEP clients. Lightweight PEP client libraries are also
+provided to ease the integration and interoperability with other
+EMI services or components.
 
 %prep
 %setup -q
@@ -89,7 +89,7 @@ rm -rf $RPM_BUILD_ROOT
 # on upgrade (2): stop the service, and clean up the lib directory
 if [ $1 -eq 2 ] ; then
     /sbin/service argus-pepd stop > /dev/null 2>&1 || :
-    # delete old jar 
+    # delete old jar
     find /var/lib/argus/pepd/lib -name "*.jar" -exec rm {} \;
 fi
 
@@ -97,13 +97,17 @@ fi
 %post
 # on install (1): register the service in init.d
 # on upgrade (2): nothing
-if [ $1 -eq 1 ]; then 
+if [ $1 -eq 1 ] && [ -z `pidof systemd` ] ; then
     /sbin/chkconfig --add argus-pepd
 fi
 # correct files/dirs permission
 chmod -f 640 %{_sysconfdir}/argus/pepd/pepd.ini
 chmod -f 750 %{_datadir}/argus/pepd/sbin/pepdctl
 chmod -f 750 %{_localstatedir}/log/argus/pepd
+if [ `pidof systemd` ]; then
+	/usr/bin/systemctl daemon-reload
+fi
+
 
 
 %preun
@@ -111,12 +115,14 @@ chmod -f 750 %{_localstatedir}/log/argus/pepd
 # on upgrade (1): nothing
 if [ $1 -eq 0 ] ; then
     /sbin/service argus-pepd stop > /dev/null 2>&1 || :
-    /sbin/chkconfig --del argus-pepd
+	if [ ! `pidof systemd` ]; then
+    	/sbin/chkconfig --del argus-pepd
+	fi
 fi
 
 %postun
 # on uninstall (0): nothing
-# on upgrade (1): restart the service 
+# on upgrade (1): restart the service
 if [ $1 -eq 1 ] ; then
     /sbin/service argus-pepd start
 fi
@@ -124,7 +130,6 @@ fi
 
 %files
 %defattr(-,root,root,-)
-%{_sysconfdir}/init.d/argus-pepd
 %dir %{_sysconfdir}/argus/pepd
 %config(noreplace) %{_sysconfdir}/argus/pepd/logging.xml
 %config(noreplace) %{_sysconfdir}/argus/pepd/pepd.ini
@@ -181,14 +186,19 @@ fi
 %dir %{_localstatedir}/log/argus/pepd
 
 %if 0%{?rhel} >= 7 || 0%{?fedora} >= 21
+%exclude %{_sysconfdir}/init.d/argus-pepd
 /lib/systemd/system/argus-pepd.service
 %else
 %exclude /lib/systemd/system/argus-pepd.service
+%{_sysconfdir}/init.d/argus-pepd
 %endif
 
 %changelog
 * Thu May 5 2016 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 1.7.2-0
 - Pre-release packaging for 1.7.2
+
+* Mon Apr 11 2016 Marco Caberletti <marco.caberletti@cnaf.infn.it> 1.7.0-2
+- Exclude sysV init script for EL7.
 
 * Tue Nov 17 2015 Marco Caberletti <marco.caberletti@cnaf.infn.it> 1.7.0-1
 - Add systemd unit file.
@@ -209,10 +219,10 @@ fi
 * Wed Jan 30 2013 Valery Tschopp <valery.tschopp@switch.ch> 1.6.0-3
 - Upstream version 1.6.0 for EMI-3 release.
 
-* Tue Jan 29 2013 Valery Tschopp <valery.tschopp@switch.ch> 1.6.0-2 
+* Tue Jan 29 2013 Valery Tschopp <valery.tschopp@switch.ch> 1.6.0-2
 - Upstream version 1.6.0 for EMI-3 (RC2).
 
-* Sun Nov 18 2012 Valery Tschopp <valery.tschopp@switch.ch> 1.6.0-1 
+* Sun Nov 18 2012 Valery Tschopp <valery.tschopp@switch.ch> 1.6.0-1
 - Upstream version 1.6.0 for EMI-3 (RC1).
 
 * Mon Jul 30 2012 Valery Tschopp <valery.tschopp@switch.ch> 1.5.2-1

@@ -41,8 +41,7 @@ BuildRequires: %{maven}
 BuildRequires: java-%{jdk_version}-openjdk-devel
 
 Requires: java-%{jdk_version}-openjdk
-Requires: canl-java
-Requires: bouncycastle-pkix
+Requires: voms-api-java
 
 %description
 Argus PAP (Policy Administration Point).
@@ -86,15 +85,22 @@ if [ $1 -gt 1 ] ; then
     fi
 fi
 
+%post
+if [ `pidof systemd` ]; then
+	/usr/bin/systemctl daemon-reload
+fi
+
 %preun
 if [ $1 -eq 0 ] ; then
     /sbin/service argus-pap stop > /dev/null 2>&1 || :
-    /sbin/chkconfig --del argus-pap
+	if [ ! `pidof systemd` ]; then
+    	/sbin/chkconfig --del argus-pap
+	fi
 fi
 
 
 # register the service in init.d
-if [ $1 -eq 1 ]; then
+if [ $1 -eq 1 && ! `pidof systemd` ]; then
     /sbin/chkconfig --add argus-pap
 fi
 
@@ -107,7 +113,6 @@ fi
 %files
 
 %defattr(-,root,root,-)
-%{_initrddir}/argus-pap
 
 %dir %{_sysconfdir}/argus/pap
 
@@ -148,12 +153,17 @@ fi
 %dir %{_localstatedir}/log/argus/pap
 
 %if 0%{?rhel} >= 7 || 0%{?fedora} >= 21
+%exclude %{_initrddir}/argus-pap
 /lib/systemd/system/argus-pap.service
 %else
 %exclude /lib/systemd/system/argus-pap.service
+%{_initrddir}/argus-pap
 %endif
 
 %changelog
+* Mon Apr 11 2016 Marco Caberletti <marco.caberletti@cnaf.infn.it> 1.7.0-2
+- Exclude sysV init script for EL7.
+
 * Tue Nov 17 2015 Marco Caberletti <marco.caberletti at cnaf.infn.it> - 1.7.0-0
 - Support for Systemd
 

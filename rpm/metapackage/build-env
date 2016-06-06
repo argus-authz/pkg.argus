@@ -1,4 +1,4 @@
-BUILD_NAME=argus-metapackage
+BUILD_NAME=argus-authz
 BUILD_REPO=git://github.com/argus-authz/argus-metapackage.git
 BUILD_TAG=master
 PKG_REPO=git://github.com/argus-authz/pkg.argus.git

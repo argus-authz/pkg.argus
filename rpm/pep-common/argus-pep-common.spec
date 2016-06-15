@@ -2,7 +2,7 @@
 %define __jar_repack 0
 
 %global base_version 2.3.1
-%global base_release 0
+%global base_release 1
 
 %if 0%{?rhel} == 5
 %define jdk_version 1.7.0

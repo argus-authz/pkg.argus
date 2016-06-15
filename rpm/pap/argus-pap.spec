@@ -3,7 +3,7 @@
 %define __os_install_post %{nil}
 
 %global base_version 1.7.0
-%global base_release 0
+%global base_release 1
 
 %if 0%{?rhel} == 5
 %define jdk_version 1.7.0

@@ -142,6 +142,8 @@ fi
 %{_datadir}/argus/pepd/doc
 %{_datadir}/argus/pepd/lib
 %{_datadir}/argus/pepd/sbin/pepdctl
+%{_sysconfdir}/grid-security/certificates/policy-aspen-birch-cedar.info
+%{_sysconfdir}/grid-security/certificates/policy-aspen-birch-cedar-dogwood.info
 %dir %{_defaultdocdir}/argus/pepd
 %{_defaultdocdir}/argus/pepd/COPYRIGHT
 %{_defaultdocdir}/argus/pepd/LICENSE
@@ -194,6 +196,9 @@ fi
 %endif
 
 %changelog
+* Wed Aug  3 2016 Mischa Salle <msalle@nikhef.nl> 1.7.2-1
+- Add two Argus-specific policy info files.
+
 * Thu May 5 2016 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 1.7.2-0
 - Pre-release packaging for 1.7.2
 

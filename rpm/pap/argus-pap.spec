@@ -2,8 +2,8 @@
 %define __jar_repack 0
 %define __os_install_post %{nil}
 
-%global base_version 1.7.0
-%global base_release 1
+%global base_version 1.7.1
+%global base_release 0
 
 %if 0%{?rhel} == 5
 %define jdk_version 1.7.0
@@ -161,24 +161,27 @@ fi
 %endif
 
 %changelog
+* Mon Jan 9 2017 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 1.7.1-0
+- Packaging for 1.7.1
+
 * Mon Apr 11 2016 Marco Caberletti <marco.caberletti@cnaf.infn.it> 1.7.0-2
 - Exclude sysV init script for EL7.
 
-* Tue Nov 17 2015 Marco Caberletti <marco.caberletti at cnaf.infn.it> - 1.7.0-0
+* Tue Nov 17 2015 Marco Caberletti <marco.caberletti@cnaf.infn.it> 1.7.0-0
 - Support for Systemd
 
-* Thu Jul 2 2015 Andrea Ceccanti <andrea.ceccanti at cnaf.infn.it> - 1.6.3-0
+* Thu Jul 2 2015 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 1.6.3-0
 - Move to java 8
 
-* Mon Feb 2 2015 Andrea Ceccanti <andrea.ceccanti at cnaf.infn.it> - 1.6.2-1
+* Mon Feb 2 2015 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 1.6.2-1
 - Bumped version to 1.6.2-1
 
-* Thu Apr 11 2013 Andrea Ceccanti <andrea.ceccanti at cnaf.infn.it> - 1.6.1-1
+* Thu Apr 11 2013 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 1.6.1-1
 - Fix for https://savannah.cern.ch/bugs/?101151
 
-* Tue Oct 16 2012 Andrea Ceccanti <andrea.ceccanti at cnaf.infn.it> - 1.6.0-1
+* Tue Oct 16 2012 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 1.6.0-1
 - CANL-based Argus PAP.
 - Decouple PAP pom version from rpm version.
 
-* Thu Mar 15 2012 Andrea Ceccanti <andrea.ceccanti at cnaf.infn.it> - 1.5.1-1
+* Thu Mar 15 2012 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 1.5.1-1
 - Self managed packaging

@@ -59,7 +59,8 @@ this is done by the Policy Enforcement Point (PEP).
 This package provides the Argus PAP service.
 
 %prep
-%setup -n argus-pap
+# %setup -n argus-pap
+%setup -q
 
 %build
 mvn -U -B package

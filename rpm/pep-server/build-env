@@ -1,7 +1,7 @@
 BUILD_NAME=argus-pep-server
 BUILD_REPO=git://github.com/argus-authz/argus-pep-server
-BUILD_TAG=1_7
+BUILD_TAG=iota-ca-support
 PKG_REPO=git://github.com/argus-authz/pkg.argus.git
 PKG_TAG=master
 PKG_SPEC_FILE=argus-pep-server/rpm/pep-server/argus-pep-server.spec
-TARBALL_VERSION=1.7.3-SNAPSHOT
+TARBALL_VERSION=1.7.3

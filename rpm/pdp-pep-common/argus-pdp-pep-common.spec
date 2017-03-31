@@ -1,6 +1,7 @@
 ## Turn off meaningless jar repackaging on SL6
 %define __jar_repack 0
 
+%global jar_version 1.5.1-SNAPSHOT
 %global base_version 1.5.1
 %global base_release 0
 
@@ -68,10 +69,17 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root,-)
 %dir %{_datadir}/java
 %{_datadir}/java/%{name}.jar
-%{_datadir}/java/%{name}-%{version}.jar
-%doc README.md doc/RELEASE-NOTES doc/COPYRIGHT doc/LICENSE
+%{_datadir}/java/%{name}-%{jar_version}.jar
+#%{_datadir}/doc/%{name}-%{jar_version} README.md 
+%{_datadir}/doc/%{name}-%{jar_version}/RELEASE-NOTES
+%{_datadir}/doc/%{name}-%{jar_version}/COPYRIGHT
+%{_datadir}/doc/%{name}-%{jar_version}/LICENSE
+
 
 %changelog
+* Mon Sep 7 2015 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 1.5.1-0
+- Packaging for 1.5.1-0
+
 * Mon Sep 7 2015 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 1.5.0-0
 - Pre-release packaging for 1.5.0-0
 

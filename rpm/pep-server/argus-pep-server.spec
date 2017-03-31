@@ -1,6 +1,7 @@
 # Turn off the brp-java-repack-jars script
 %global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-java-repack-jars[[:space:]].*$!!g')
 
+%global jar_version  1.7.3-SNAPSHOT
 %global base_version 1.7.3
 %global base_release 0
 
@@ -142,14 +143,12 @@ fi
 %{_datadir}/argus/pepd/doc
 %{_datadir}/argus/pepd/lib
 %{_datadir}/argus/pepd/sbin/pepdctl
-%{_sysconfdir}/grid-security/certificates/policy-aspen-birch-cedar.info
-%{_sysconfdir}/grid-security/certificates/policy-aspen-birch-cedar-dogwood.info
 %dir %{_defaultdocdir}/argus/pepd
 %{_defaultdocdir}/argus/pepd/COPYRIGHT
 %{_defaultdocdir}/argus/pepd/LICENSE
 %{_defaultdocdir}/argus/pepd/RELEASE-NOTES
 %dir %{_localstatedir}/lib/argus/pepd/lib
-%{_localstatedir}/lib/argus/pepd/lib/argus-pepd-%{version}.jar
+%{_localstatedir}/lib/argus/pepd/lib/argus-pepd-%{jar_version}.jar
 %{_localstatedir}/lib/argus/pepd/lib/commons-codec-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/commons-collections-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/commons-httpclient-*.jar

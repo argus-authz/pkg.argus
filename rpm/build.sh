@@ -22,6 +22,8 @@ fi
 for c in ${COMPONENTS}; do
   build_env=""
 
+  build_repo_var="BUILD_REPO_$(echo ${c} | tr '[:lower:]' '[:upper:]' | tr '-' '_')"
+
   while read -r line
   do
     build_env="${build_env} -e ${line}"
@@ -39,8 +41,8 @@ for c in ${COMPONENTS}; do
     build_env="${build_env} -e PKG_STAGE_DIR=${PKG_STAGE_DIR}"
   fi
 
-  if [ -n "${BUILD_REPO}" ]; then
-    build_env="${build_env} -e BUILD_REPO=${BUILD_REPO}"
+  if [ -n "${!build_repo_var}" ]; then
+    build_env="${build_env} -e BUILD_REPO=${!build_repo_var}"
   fi
 
   if [ -n "${PKG_TAG}" ]; then

@@ -134,6 +134,7 @@ fi
 %dir %{_sysconfdir}/argus/pepd
 %config(noreplace) %{_sysconfdir}/argus/pepd/logging.xml
 %config(noreplace) %{_sysconfdir}/argus/pepd/pepd.ini
+%config(noreplace) %{_sysconfdir}/argus/pepd/vo-ca-ap-file
 %config(noreplace) %{_sysconfdir}/sysconfig/argus-pepd
 %{_sbindir}/pepdctl
 %dir %{_datadir}/argus/pepd

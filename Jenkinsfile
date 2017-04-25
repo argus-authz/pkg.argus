@@ -7,7 +7,7 @@ pipeline {
   }
   
   parameters {
-    string(name: 'COMPONENTS', defaultValue: 'pap pdp-pep-common pep-common pdp pep-server pep-api-c pep-api-java pepcli gsi-pep-callout')
+    string(name: 'COMPONENTS', defaultValue: 'pap pdp-pep-common pep-common pdp pep-server pep-api-c pep-api-java pepcli gsi-pep-callout metapackage')
     choice(name: 'PLATFORM', choices: 'centos6\ncentos7')
     string(name: 'PKG_BUILD_NUMBER', defaultValue: '', description: 'This is used to pass a custom build number that will be included in the package version.')
   }
@@ -21,6 +21,7 @@ pipeline {
         PLATFORM = "${params.PLATFORM}"
         COMPONENTS = "${params.COMPONENTS}"
         PKG_BUILD_NUMBER = "${params.PKG_BUILD_NUMBER}"
+        STAGE_ALL = '1'
       }
       
       steps {

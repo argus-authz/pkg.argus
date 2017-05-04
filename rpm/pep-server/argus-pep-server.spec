@@ -1,9 +1,9 @@
 # Turn off the brp-java-repack-jars script
 %global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-java-repack-jars[[:space:]].*$!!g')
 
-%global jar_version  1.7.3-SNAPSHOT
+%global jar_version  1.7.3
 %global base_version 1.7.3
-%global base_release 0
+%global base_release 1
 
 %if 0%{?rhel} == 5
 %define jdk_version 1.7.0
@@ -196,7 +196,7 @@ fi
 %endif
 
 %changelog
-* Mon Jan 9 2017 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 1.7.3-0
+* Mon Jan 9 2117 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 1.7.3-1
 - Pre-release packaging for 1.7.3
 
 * Wed Aug  3 2016 Mischa Salle <msalle@nikhef.nl> 1.7.2-1

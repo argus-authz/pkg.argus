@@ -3,7 +3,7 @@
 %define __os_install_post %{nil}
 
 %global base_version 1.7.1
-%global base_release 0
+%global base_release 1
 
 %if 0%{?rhel} == 5
 %define jdk_version 1.7.0
@@ -163,7 +163,7 @@ fi
 %endif
 
 %changelog
-* Mon Jan 9 2017 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 1.7.1-0
+* Mon Jan 9 2017 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 1.7.1-1
 - Packaging for 1.7.1
 
 * Mon Apr 11 2016 Marco Caberletti <marco.caberletti@cnaf.infn.it> 1.7.0-2

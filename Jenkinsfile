@@ -17,7 +17,7 @@ pipeline {
       environment {
         DATA_CONTAINER_NAME = "stage-area-pkg.argus-${env.BUILD_NUMBER}"
         PKG_TAG = "${env.BRANCH_NAME}"
-        MVN_REPO_CONTAINER_NAME = "mvn_repo-${env.BUILD_NUMBER}"
+        MVN_REPO_CONTAINER_NAME = "mvn_repo-pkg.argus-${env.BUILD_NUMBER}"
         PLATFORM = "${params.PLATFORM}"
         COMPONENTS = "${params.COMPONENTS}"
         PKG_BUILD_NUMBER = "${params.PKG_BUILD_NUMBER}"
@@ -37,6 +37,8 @@ pipeline {
         sh 'docker cp ${DATA_CONTAINER_NAME}:/stage-area repo'
         sh 'docker rm -f ${DATA_CONTAINER_NAME} ${MVN_REPO_CONTAINER_NAME}'
         archiveArtifacts 'repo/**'
+        
+        script { currentBuild.result = 'SUCCESS' }
       }
     }
   }
@@ -44,6 +46,13 @@ pipeline {
   post {
     failure {
       slackSend color: 'danger', message: "${env.JOB_NAME} - #${env.BUILD_NUMBER} Failure (<${env.BUILD_URL}|Open>)"
+    }
+    changed {
+      script{
+        if('SUCCESS'.equals(currentBuild.result)) {
+          slackSend color: 'good', message: "${env.JOB_NAME} - #${env.BUILD_NUMBER} Back to normal (<${env.BUILD_URL}|Open>)"
+        }
+      }
     }
   }
 }

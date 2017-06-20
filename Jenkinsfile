@@ -7,9 +7,9 @@ pipeline {
   }
   
   parameters {
-    string(name: 'COMPONENTS', defaultValue: 'pap pdp-pep-common pep-common pdp pep-server pep-api-c pep-api-java pepcli gsi-pep-callout metapackage')
-    choice(name: 'PLATFORM', choices: 'centos6\ncentos7')
+    choice(name: 'PLATFORM', choices: 'centos6\ncentos7', description: 'OS platform')
     string(name: 'PKG_BUILD_NUMBER', defaultValue: '', description: 'This is used to pass a custom build number that will be included in the package version.')
+    string(name: 'COMPONENTS', defaultValue: '', description: 'List of components to build')
   }
 
   stages{
@@ -25,7 +25,8 @@ pipeline {
       }
       
       steps {
-        git(url: 'https://github.com/argus-authz/pkg.argus.git', branch: env.BRANCH_NAME)
+        cleanWs notFailBuild: true
+        checkout scm
         sh 'docker create -v /stage-area --name ${DATA_CONTAINER_NAME} italiangrid/pkg.base:${PLATFORM}'
         sh 'docker create -v /m2-repository --name ${MVN_REPO_CONTAINER_NAME} italiangrid/pkg.base:${PLATFORM}'
         sh '''

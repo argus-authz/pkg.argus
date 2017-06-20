@@ -8,8 +8,9 @@ pipeline {
   
   parameters {
     choice(name: 'PLATFORM', choices: 'centos6\ncentos7', description: 'OS platform')
+    choice(name: 'INCLUDE_BUILD_NUMBER', choices: '0\n1', description: 'Flag to exclude/include build number.')
     string(name: 'PKG_BUILD_NUMBER', defaultValue: '', description: 'This is used to pass a custom build number that will be included in the package version.')
-    string(name: 'COMPONENTS', defaultValue: '', description: 'List of components to build')
+    string(name: 'COMPONENT_LIST', defaultValue: '', description: 'List of components to build')
   }
 
   stages{
@@ -19,7 +20,8 @@ pipeline {
         PKG_TAG = "${env.BRANCH_NAME}"
         MVN_REPO_CONTAINER_NAME = "mvn_repo-pkg.argus-${env.BUILD_NUMBER}"
         PLATFORM = "${params.PLATFORM}"
-        COMPONENTS = "${params.COMPONENTS}"
+        COMPONENT_LIST = "${params.COMPONENT_LIST}"
+        INCLUDE_BUILD_NUMBER = "${params.INCLUDE_BUILD_NUMBER}"
         PKG_BUILD_NUMBER = "${params.PKG_BUILD_NUMBER}"
         STAGE_ALL = '1'
       }

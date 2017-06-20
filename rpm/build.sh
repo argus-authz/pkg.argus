@@ -7,7 +7,9 @@ source ./build-env
 set +a
 
 PLATFORM=${PLATFORM:-centos7}
-ALL_COMPONENTS="iam-login-service"
+ALL_COMPONENTS="pap pdp-pep-common pep-common pdp pep-server pep-api-c pep-api-java pepcli gsi-pep-callout metapackage"
+
+COMPONENTS=${COMPONENT_LIST:-${COMPONENTS}}
 COMPONENTS=${COMPONENTS:-${ALL_COMPONENTS}}
 
 pkg_base_image_name="italiangrid/pkg.base:${PLATFORM}"

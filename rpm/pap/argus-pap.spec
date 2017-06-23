@@ -2,7 +2,7 @@
 %define __jar_repack 0
 %define __os_install_post %{nil}
 
-%global base_version 1.7.1
+%global base_version 1.7.2
 %global base_release 1
 
 %if 0%{?rhel} == 5
@@ -163,6 +163,9 @@ fi
 %endif
 
 %changelog
+* Fri Jun 23 2017 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 1.7.2-1
+- Packaging for 1.7.2
+
 * Mon Jan 9 2017 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 1.7.1-1
 - Packaging for 1.7.1
 

@@ -29,6 +29,9 @@ pipeline {
       steps {
         cleanWs notFailBuild: true
         checkout scm
+        sh 'git --version'
+        sh 'git rev-parse --abbrev-ref HEAD'
+        sh 'git symbolic-ref HEAD | sed -e "s/^refs\/heads\///"'
         sh 'docker create -v /stage-area --name ${DATA_CONTAINER_NAME} italiangrid/pkg.base:${PLATFORM}'
         sh 'docker create -v /m2-repository --name ${MVN_REPO_CONTAINER_NAME} italiangrid/pkg.base:${PLATFORM}'
         sh '''

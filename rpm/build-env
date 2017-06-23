@@ -1,4 +1,9 @@
 COMPONENTS="pap"
-PKG_TAG=pap-16
+PKG_TAG=$(git rev-parse --abbrev-ref HEAD)
 PKG_STAGE_RPMS=1
 INCLUDE_BUILD_NUMBER=1
+
+# Comment out this if you want to test locally the changes
+#PKG_REPO=/code/pkg.argus
+#DOCKER_ARGS="-v ${HOME}/git/pkg.argus:/code/pkg.argus:ro"
+

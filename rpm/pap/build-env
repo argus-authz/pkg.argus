@@ -2,6 +2,6 @@ BUILD_NAME=argus-pap
 BUILD_REPO=git://github.com/argus-authz/argus-pap
 BUILD_TAG=fix/16
 PKG_REPO=git://github.com/argus-authz/pkg.argus.git
-PKG_TAG=pap-16
+# PKG_TAG=release/1.7.2
 PKG_SPEC_FILE=argus-pap/rpm/pap/argus-pap.spec
 TARBALL_VERSION=1.7.2

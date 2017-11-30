@@ -2,7 +2,7 @@ pipeline {
   agent { label 'docker' }
 
   options {
-    timeout(time: 1, unit: 'HOURS')
+    timeout(time: 3, unit: 'HOURS')
     buildDiscarder(logRotator(numToKeepStr: '10'))
   }
   
@@ -11,6 +11,7 @@ pipeline {
     choice(name: 'INCLUDE_BUILD_NUMBER', choices: '0\n1', description: 'Flag to exclude/include build number.')
     string(name: 'PKG_BUILD_NUMBER', defaultValue: '', description: 'This is used to pass a custom build number that will be included in the package version.')
     string(name: 'COMPONENT_LIST', defaultValue: '', description: 'List of components to build')
+    string(name: 'USE_DOCKER_REGISTRY', defaultValue: '1', description: 'Pull image from private registry; empty is false')
   }
 
   stages{
@@ -24,6 +25,7 @@ pipeline {
         INCLUDE_BUILD_NUMBER = "${params.INCLUDE_BUILD_NUMBER}"
         PKG_BUILD_NUMBER = "${params.PKG_BUILD_NUMBER}"
         STAGE_ALL = '1'
+        USE_DOCKER_REGISTRY = "${params.USE_DOCKER_REGISTRY}"
       }
       
       steps {

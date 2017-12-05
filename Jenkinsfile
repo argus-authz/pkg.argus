@@ -29,21 +29,29 @@ pipeline {
       }
       
       steps {
-        cleanWs notFailBuild: true
-        checkout scm
-        sh 'docker create -v /stage-area --name ${DATA_CONTAINER_NAME} italiangrid/pkg.base:${PLATFORM}'
-        sh 'docker create -v /m2-repository --name ${MVN_REPO_CONTAINER_NAME} italiangrid/pkg.base:${PLATFORM}'
-        sh '''
-          pushd rpm 
-          ls -al
-          sh build.sh
-          popd
-        '''
-        sh 'docker cp ${DATA_CONTAINER_NAME}:/stage-area repo'
-        sh 'docker rm -f ${DATA_CONTAINER_NAME} ${MVN_REPO_CONTAINER_NAME}'
-        archiveArtifacts 'repo/**'
-        
-        script { currentBuild.result = 'SUCCESS' }
+        container('docker-runner'){
+          cleanWs notFailBuild: true
+          checkout scm
+          sh 'docker create -v /stage-area --name ${DATA_CONTAINER_NAME} italiangrid/pkg.base:${PLATFORM}'
+          sh 'docker create -v /m2-repository --name ${MVN_REPO_CONTAINER_NAME} italiangrid/pkg.base:${PLATFORM}'
+          sh '''
+            pushd rpm
+            ls -al
+            sh build.sh
+            popd
+          '''
+          sh 'docker cp ${DATA_CONTAINER_NAME}:/stage-area repo'
+          sh 'docker rm -f ${DATA_CONTAINER_NAME} ${MVN_REPO_CONTAINER_NAME}'
+          archiveArtifacts 'repo/**'
+        }
+      }
+    }
+ 
+    stage('result'){
+      steps {
+        script {
+          currentBuild.result = 'SUCCESS'
+        }
       }
     }
   }

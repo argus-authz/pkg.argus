@@ -26,6 +26,7 @@ pipeline {
         PKG_BUILD_NUMBER = "${params.PKG_BUILD_NUMBER}"
         STAGE_ALL = '1'
         USE_DOCKER_REGISTRY = "${params.USE_DOCKER_REGISTRY}"
+        DOCKER_REGISTRY_HOST = "${env.DOCKER_REGISTRY_HOST}"
       }
       
       steps {

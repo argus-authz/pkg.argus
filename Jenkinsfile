@@ -1,5 +1,16 @@
+@Library('sd')_
+def kubeLabel = getKubeLabel()
+
 pipeline {
-  agent { label 'docker' }
+
+  agent {
+    kubernetes {
+      label "${kubeLabel}"
+      cloud 'Kube mwdevel'
+      defaultContainer 'runner'
+      inheritFrom 'ci-template'
+    }
+  }
 
   options {
     timeout(time: 3, unit: 'HOURS')
@@ -30,21 +41,19 @@ pipeline {
       }
       
       steps {
-        container('docker-runner'){
-          cleanWs notFailBuild: true
-          checkout scm
-          sh 'docker create -v /stage-area --name ${DATA_CONTAINER_NAME} italiangrid/pkg.base:${PLATFORM}'
-          sh 'docker create -v /m2-repository --name ${MVN_REPO_CONTAINER_NAME} italiangrid/pkg.base:${PLATFORM}'
-          sh '''
-            pushd rpm
-            ls -al
-            sh build.sh
-            popd
-          '''
-          sh 'docker cp ${DATA_CONTAINER_NAME}:/stage-area repo'
-          sh 'docker rm -f ${DATA_CONTAINER_NAME} ${MVN_REPO_CONTAINER_NAME}'
-          archiveArtifacts 'repo/**'
-        }
+        cleanWs notFailBuild: true
+        checkout scm
+        sh 'docker create -v /stage-area --name ${DATA_CONTAINER_NAME} italiangrid/pkg.base:${PLATFORM}'
+        sh 'docker create -v /m2-repository --name ${MVN_REPO_CONTAINER_NAME} italiangrid/pkg.base:${PLATFORM}'
+        sh '''
+          pushd rpm
+          ls -al
+          sh build.sh
+          popd
+        '''
+        sh 'docker cp ${DATA_CONTAINER_NAME}:/stage-area repo'
+        sh 'docker rm -f ${DATA_CONTAINER_NAME} ${MVN_REPO_CONTAINER_NAME}'
+        archiveArtifacts 'repo/**'
       }
     }
  
@@ -62,8 +71,8 @@ pipeline {
       slackSend color: 'danger', message: "${env.JOB_NAME} - #${env.BUILD_NUMBER} Failure (<${env.BUILD_URL}|Open>)"
     }
     changed {
-      script{
-        if('SUCCESS'.equals(currentBuild.result)) {
+      script {
+        if ('SUCCESS'.equals(currentBuild.result)) {
           slackSend color: 'good', message: "${env.JOB_NAME} - #${env.BUILD_NUMBER} Back to normal (<${env.BUILD_URL}|Open>)"
         }
       }

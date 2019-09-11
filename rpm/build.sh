@@ -26,6 +26,10 @@ else
   mvn_repo_name=${MVN_REPO_CONTAINER_NAME}
 fi
 
+if [ -z "${SKIP_PKG_BASE_PULL_IMAGE}" ]; then
+ docker pull ${pkg_base_image_name}
+fi
+
 # Run packaging
 for c in ${COMPONENTS}; do
   build_env_file="$c/build-env"
@@ -50,8 +54,7 @@ for c in ${COMPONENTS}; do
   if [ -n "${DATA_CONTAINER_NAME}" ]; then
     volumes_conf="${volumes_conf} --volumes-from ${DATA_CONTAINER_NAME}"
   fi
-  
-  docker pull ${pkg_base_image_name}
+
   docker run -i --volumes-from ${mvn_repo_name} \
     ${volumes_conf} \
     ${DOCKER_ARGS} \

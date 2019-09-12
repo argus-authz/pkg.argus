@@ -1,7 +1,7 @@
 BUILD_NAME=argus-pdp-pep-common
 BUILD_REPO=git://github.com/argus-authz/argus-pdp-pep-common
 BUILD_TAG=develop
-TARBALL_VERSION=1.5.2
+TARBALL_VERSION=1.5.2-SNAPSHOT
 PKG_REPO=git://github.com/argus-authz/pkg.argus.git
 PKG_TAG=master
 PKG_SPEC_FILE=argus-pdp-pep-common/rpm/pdp-pep-common/argus-pdp-pep-common.spec

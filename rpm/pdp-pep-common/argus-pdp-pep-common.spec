@@ -1,8 +1,8 @@
 ## Turn off meaningless jar repackaging on SL6
 %define __jar_repack 0
 
-%global jar_version 1.5.2
-%global base_version 1.5.2
+%global jar_version 1.5.2-SNAPSHOT
+%global base_version 1.5.2-SNAPSHOT
 %global base_release 0
 
 %if 0%{?rhel} == 5

@@ -1,6 +1,6 @@
 BUILD_NAME=argus-gsi-pep-callout
 BUILD_REPO=git://github.com/argus-authz/argus-gsi-pep-callout
-BUILD_TAG=1_3
+BUILD_TAG=fix/stack
 PKG_REPO=git://github.com/argus-authz/pkg.argus.git
 PKG_TAG=master
 PKG_SPEC_FILE=argus-gsi-pep-callout/rpm/gsi-pep-callout/argus-gsi-pep-callout.spec

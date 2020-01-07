@@ -163,6 +163,7 @@ fi
 %{_localstatedir}/lib/argus/pepd/lib/ini4j-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/jcl-over-slf4j-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/jetty-*.jar
+%{_localstatedir}/lib/argus/pepd/lib/jetty-all-*.pom
 %{_localstatedir}/lib/argus/pepd/lib/javax.*.jar
 %{_localstatedir}/lib/argus/pepd/lib/javax-websocket-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/jna-*.jar

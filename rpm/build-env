@@ -1,4 +1,4 @@
-COMPONENTS="pap"
+COMPONENTS="pdp-pep-common pep-server"
 PKG_TAG=${PKG_TAG:-$(git rev-parse --abbrev-ref HEAD)}
 PKG_STAGE_RPMS=1
 #INCLUDE_BUILD_NUMBER=1
@@ -7,3 +7,5 @@ PKG_STAGE_RPMS=1
 #PKG_REPO=/code/pkg.argus
 #DOCKER_ARGS="-v ${HOME}/git/pkg.argus:/code/pkg.argus:ro"
 
+# Comment out this if you want to skip pkg.base image pull
+SKIP_PKG_BASE_PULL_IMAGE=1

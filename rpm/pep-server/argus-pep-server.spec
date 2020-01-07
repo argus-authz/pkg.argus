@@ -150,28 +150,34 @@ fi
 %{_defaultdocdir}/argus/pepd/RELEASE-NOTES
 %dir %{_localstatedir}/lib/argus/pepd/lib
 %{_localstatedir}/lib/argus/pepd/lib/argus-pepd-%{jar_version}.jar
+%{_localstatedir}/lib/argus/pepd/lib/asm-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/commons-codec-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/commons-collections-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/commons-httpclient-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/commons-io-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/commons-lang-*.jar
+%{_localstatedir}/lib/argus/pepd/lib/conscrypt-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/ehcache-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/esapi-*.jar
+%{_localstatedir}/lib/argus/pepd/lib/http2-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/ini4j-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/jcl-over-slf4j-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/jetty-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/javax.*.jar
+%{_localstatedir}/lib/argus/pepd/lib/javax-websocket-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/jna-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/joda-time-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/jul-to-slf4j-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/log4j-over-slf4j-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/logback-classic-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/logback-core-*.jar
+%{_localstatedir}/lib/argus/pepd/lib/metrics-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/not-yet-commons-ssl-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/opensaml-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/openws-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/slf4j-api-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/velocity-*.jar
+%{_localstatedir}/lib/argus/pepd/lib/websocket-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/xmlsec-*.jar
 %{_localstatedir}/lib/argus/pepd/lib/xmltooling-*.jar
 %dir %{_localstatedir}/lib/argus/pepd/lib/endorsed

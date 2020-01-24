@@ -156,6 +156,7 @@ fi
 %{_localstatedir}/lib/argus/pdp/lib/jaxb-xjc-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/jcl-over-slf4j-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/jetty-*.jar
+%{_localstatedir}/lib/argus/pdp/lib/jetty-*.pom
 %{_localstatedir}/lib/argus/pdp/lib/joda-time-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/jul-to-slf4j-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/log4j-over-slf4j-*.jar

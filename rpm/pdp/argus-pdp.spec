@@ -137,16 +137,20 @@ fi
 %{_defaultdocdir}/argus/pdp/RELEASE-NOTES
 %dir %{_localstatedir}/lib/argus/pdp/lib
 %{_localstatedir}/lib/argus/pdp/lib/argus-pdp-%{version}.jar
+%{_localstatedir}/lib/argus/pdp/lib/asm-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/activation-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/commons-codec-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/commons-collections-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/commons-httpclient-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/commons-io-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/commons-lang-*.jar
+%{_localstatedir}/lib/argus/pdp/lib/conscrypt-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/esapi-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/herasaf-xacml-core-*.jar
+%{_localstatedir}/lib/argus/pdp/lib/http2-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/ini4j-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/javax.*.jar
+%{_localstatedir}/lib/argus/pdp/lib/javax-websocket-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/jaxb-api-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/jaxb-impl-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/jaxb-xjc-*.jar
@@ -157,12 +161,14 @@ fi
 %{_localstatedir}/lib/argus/pdp/lib/log4j-over-slf4j-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/logback-classic-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/logback-core-*.jar
+%{_localstatedir}/lib/argus/pdp/lib/metrics-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/not-yet-commons-ssl-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/opensaml-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/openws-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/slf4j-api-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/stax-api-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/velocity-*.jar
+%{_localstatedir}/lib/argus/pdp/lib/websocket-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/xmlsec-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/xmltooling-*.jar
 %dir %{_localstatedir}/lib/argus/pdp/lib/endorsed
@@ -187,7 +193,7 @@ fi
 %endif
 
 %changelog
-* Fri Jan 24 2019 Enrico Vianello <enrico.vianello@cnaf.infn.it> 1.7.1-0
+* Fri Jan 24 2020 Enrico Vianello <enrico.vianello@cnaf.infn.it> 1.7.1-0
 - Pre-release packaging for 1.7.1
 
 * Mon Apr 11 2016 Marco Caberletti <marco.caberletti@cnaf.infn.it> 1.7.0-2

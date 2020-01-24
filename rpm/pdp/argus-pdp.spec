@@ -1,14 +1,10 @@
 # Turn off the brp-java-repack-jars script
 %global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-java-repack-jars[[:space:]].*$!!g')
 
-%global base_version 1.7.0
-%global base_release 1
+%global base_version 1.7.1
+%global base_release 0
 
-%if 0%{?rhel} == 5
-%define jdk_version 1.7.0
-%else
 %define jdk_version 1.8.0
-%endif
 
 %if 0%{?rhel} >= 7 || 0%{?fedora} >= 21
 %define maven maven
@@ -191,6 +187,9 @@ fi
 %endif
 
 %changelog
+* Fri Jan 24 2019 Enrico Vianello <enrico.vianello@cnaf.infn.it> 1.7.1-0
+- Pre-release packaging for 1.7.1
+
 * Mon Apr 11 2016 Marco Caberletti <marco.caberletti@cnaf.infn.it> 1.7.0-2
 - Exclude sysV init script for EL7.
 

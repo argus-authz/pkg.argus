@@ -1,5 +1,5 @@
-%global base_version 2.3.0
-%global base_release 2
+%global base_version 2.3.1
+%global base_release 0
 
 %if %{?build_number:1}%{!?build_number:0}
 %define release_version 0.build.%{build_number}
@@ -20,11 +20,7 @@ URL: https://twiki.cern.ch/twiki/bin/view/EGEE/AuthorizationFramework
 Source: %{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
-%if 0%{?rhel} == 5
-BuildRequires: curl-devel
-%else
 BuildRequires: libcurl-devel
-%endif
 
 %description
 The Argus PEP client API for C is a multi-thread friendly client library used
@@ -104,6 +100,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc src/example
 
 %changelog
+* Fri Jan 24 2020 Enrico Vianello <enrico.vianello@cnaf.infn.it> 2.3.1-0
+- Prepare for 2.3.1 release
+
 * Mon Feb 8 2016 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 2.3.0-2
 - Repackaged against new packaging tools
 

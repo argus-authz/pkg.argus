@@ -1,4 +1,4 @@
-COMPONENTS="pdp-pep-common pep-server pdp"
+COMPONENTS="pep-api-c pdp-pep-common pep-server pdp"
 PKG_TAG=${PKG_TAG:-$(git rev-parse --abbrev-ref HEAD)}
 PKG_STAGE_RPMS=1
 #INCLUDE_BUILD_NUMBER=1

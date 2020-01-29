@@ -14,6 +14,10 @@ COMPONENTS=${COMPONENTS:-${ALL_COMPONENTS}}
 
 pkg_base_image_name="italiangrid/pkg.base:${PLATFORM}"
 
+if [ -z "${SKIP_PKG_BASE_PULL_IMAGE}" ]; then
+  docker pull ${pkg_base_image_name}
+fi
+
 if [ -n "${USE_DOCKER_REGISTRY}" ]; then
   pkg_base_image_name="${DOCKER_REGISTRY_HOST}/${pkg_base_image_name}"
 fi
@@ -24,10 +28,6 @@ if [ -z ${MVN_REPO_CONTAINER_NAME+x} ]; then
   docker create -v /m2-repository --name ${mvn_repo_name} ${pkg_base_image_name}
 else
   mvn_repo_name=${MVN_REPO_CONTAINER_NAME}
-fi
-
-if [ -z "${SKIP_PKG_BASE_PULL_IMAGE}" ]; then
- docker pull ${pkg_base_image_name}
 fi
 
 # Run packaging

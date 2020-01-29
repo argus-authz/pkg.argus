@@ -1,11 +1,17 @@
+# Components list - Default value is the complete list
 COMPONENTS="pep-api-c pdp-pep-common pep-server pdp"
-PKG_TAG=${PKG_TAG:-$(git rev-parse --abbrev-ref HEAD)}
+
+PKG_TAG=nightly
+
+# Comment out this if you want to skip pkg.base image pull
+#SKIP_PKG_BASE_PULL_IMAGE=1
+
+# Set to 1 if you want to store rpms into stage area
 PKG_STAGE_RPMS=1
+
+# Set to 1 if you want to add build number on enabled rpms
 #INCLUDE_BUILD_NUMBER=1
 
 # Comment out this if you want to test locally the changes
 #PKG_REPO=/code/pkg.argus
 #DOCKER_ARGS="-v ${HOME}/git/pkg.argus:/code/pkg.argus:ro"
-
-# Comment out this if you want to skip pkg.base image pull
-SKIP_PKG_BASE_PULL_IMAGE=1

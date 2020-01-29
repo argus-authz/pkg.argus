@@ -1,8 +1,32 @@
+def platform2Dir = [
+  "centos7" : 'rpm',
+  "centos6" : 'rpm'
+]
+
+def buildPackages(platform, platform2Dir, includeBuildNumber) {
+  return {
+    unstash "source"
+
+    def platformDir = platform2Dir[platform]
+
+    if (!platformDir) {
+      error("Unknown platform: ${platform}")
+    }
+
+    def includeEnv = ""
+    if (includeBuildNumber) {
+      includeEnv = "INCLUDE_BUILD_NUMBER=1"
+    }
+
+    dir(platformDir) {
+      sh "PLATFORM=${platform} ${includeEnv} pkg-build.sh"
+    }
+  }
+}
+
 pipeline {
 
-  agent {
-    label 'docker'
-  }
+  agent { label 'docker' }
 
   options {
     timeout(time: 3, unit: 'HOURS')
@@ -10,50 +34,48 @@ pipeline {
   }
   
   parameters {
-    choice(name: 'PLATFORM', choices: 'centos6\ncentos7', description: 'OS platform')
-    choice(name: 'INCLUDE_BUILD_NUMBER', choices: '0\n1', description: 'Flag to exclude/include build number.')
+    booleanParam(name: 'INCLUDE_BUILD_NUMBER', defaultValue: true, description: 'Include build number into rpm name')
+
     string(name: 'PKG_BUILD_NUMBER', defaultValue: '', description: 'This is used to pass a custom build number that will be included in the package version.')
     string(name: 'COMPONENT_LIST', defaultValue: '', description: 'List of components to build')
     string(name: 'USE_DOCKER_REGISTRY', defaultValue: '1', description: 'Pull image from private registry; empty is false')
   }
 
   stages{
-    stage('package') {
-      environment {
-        DATA_CONTAINER_NAME = "stage-area-pkg.argus-${env.BUILD_NUMBER}"
-        PKG_TAG = "${env.BRANCH_NAME}"
-        MVN_REPO_CONTAINER_NAME = "mvn_repo-pkg.argus-${env.BUILD_NUMBER}"
-        PLATFORM = "${params.PLATFORM}"
-        COMPONENT_LIST = "${params.COMPONENT_LIST}"
-        INCLUDE_BUILD_NUMBER = "${params.INCLUDE_BUILD_NUMBER}"
-        PKG_BUILD_NUMBER = "${params.PKG_BUILD_NUMBER}"
-        STAGE_ALL = '1'
-        USE_DOCKER_REGISTRY = "${params.USE_DOCKER_REGISTRY}"
-        DOCKER_REGISTRY_HOST = "${env.DOCKER_REGISTRY_HOST}"
-      }
-      
+    stage('checkout') {
       steps {
-        cleanWs notFailBuild: true
+        deleteDir()
         checkout scm
-        sh 'docker create -v /stage-area --name ${DATA_CONTAINER_NAME} italiangrid/pkg.base:${PLATFORM}'
-        sh 'docker create -v /m2-repository --name ${MVN_REPO_CONTAINER_NAME} italiangrid/pkg.base:${PLATFORM}'
-        sh '''
-          pushd rpm
-          ls -al
-          sh build.sh
-          popd
-        '''
-        sh 'docker cp ${DATA_CONTAINER_NAME}:/stage-area repo'
-        sh 'docker rm -f ${DATA_CONTAINER_NAME} ${MVN_REPO_CONTAINER_NAME}'
-        archiveArtifacts 'repo/**'
+        stash name: "source", includes: "**"
       }
     }
- 
-    stage('result'){
+    stage('setup-volumes') {
+      steps {
+        sh 'pwd && ls -lR'
+        sh 'rm -rf artifacts && mkdir -p artifacts'
+        sh './setup-volumes.sh'
+      }
+    }
+    stage('package') {
       steps {
         script {
-          currentBuild.result = 'SUCCESS'
+          def buildStages = PLATFORMS.split(' ').collectEntries {
+            [ "${it} build packages" : buildPackages(it, platform2Dir, "${params.INCLUDE_BUILD_NUMBER}" ) ]
+          }
+          parallel buildStages
         }
+      }
+    }
+    stage('archive-artifacts') {
+      steps {
+        sh './copy-artifacts.sh'
+        archiveArtifacts "artifacts/**"
+        stash name: "packages", includes: "artifacts/packages/**"
+      }
+    }
+    stage('cleanup') {
+      steps {
+          sh 'docker volume rm ${PACKAGES_VOLUME} ${STAGE_AREA_VOLUME} || echo Volume removal failed'
       }
     }
   }

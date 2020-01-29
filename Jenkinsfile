@@ -39,6 +39,8 @@ pipeline {
 
   environment {
     PKG_TAG = "${env.BRANCH_NAME}"
+    PACKAGES_VOLUME = "pkg-vol-${env.BUILD_TAG}"
+    STAGE_AREA_VOLUME = "sa-vol-${env.BUILD_TAG}"
     PKG_BUILD_NUMBER = "${env.BUILD_NUMBER}"
     PLATFORMS = "centos6 centos7"
     DOCKER_REGISTRY_HOST = "${env.DOCKER_REGISTRY_HOST}"

@@ -52,7 +52,7 @@ for c in ${COMPONENTS}; do
   fi
 
   if [ -n "${DATA_CONTAINER_NAME}" ]; then
-    volumes_conf="${volumes_conf} --volumes-from ${DATA_CONTAINER_NAME}"
+    volumes_conf="--volumes-from ${DATA_CONTAINER_NAME}"
   fi
 
   docker run -i --volumes-from ${mvn_repo_name} \

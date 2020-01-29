@@ -35,13 +35,18 @@ pipeline {
   
   parameters {
     booleanParam(name: 'INCLUDE_BUILD_NUMBER', defaultValue: true, description: 'Include build number into rpm name')
-
-    string(name: 'PKG_BUILD_NUMBER', defaultValue: '', description: 'This is used to pass a custom build number that will be included in the package version.')
-    string(name: 'COMPONENT_LIST', defaultValue: '', description: 'List of components to build')
-    string(name: 'USE_DOCKER_REGISTRY', defaultValue: '1', description: 'Pull image from private registry; empty is false')
   }
 
-  stages{
+  environment {
+    PKG_TAG = "${env.BRANCH_NAME}"
+    PLATFORMS = "centos6 centos7"
+    DOCKER_REGISTRY_HOST = "${env.DOCKER_REGISTRY_HOST}"
+    PACKAGES_VOLUME = "pkg-vol-${env.BUILD_TAG}"
+    STAGE_AREA_VOLUME = "sa-vol-${env.BUILD_TAG}"
+    DOCKER_ARGS = "--rm -v /opt/cnafsd/helper-scripts/scripts/:/usr/local/bin"
+  }
+
+  stages {
     stage('checkout') {
       steps {
         deleteDir()

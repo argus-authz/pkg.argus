@@ -1,5 +1,5 @@
 # Components list - Default value is the complete list
-#COMPONENTS="pep-api-c pdp-pep-common pep-server pdp"
+COMPONENTS="pap pdp-pep-common pep-common pdp pep-server pep-api-c pep-api-java pepcli gsi-pep-callout"
 
 PKG_TAG=nightly
 

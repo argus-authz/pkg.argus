@@ -3,7 +3,7 @@ def platform2Dir = [
   "centos6" : 'rpm'
 ]
 
-def buildPackages(platform, platform2Dir, includeBuildNumber) {
+def buildPackages(platform, platform2Dir) {
   return {
     unstash "source"
 
@@ -13,13 +13,8 @@ def buildPackages(platform, platform2Dir, includeBuildNumber) {
       error("Unknown platform: ${platform}")
     }
 
-    def includeEnv = ""
-    if (includeBuildNumber) {
-      includeEnv = "INCLUDE_BUILD_NUMBER=1"
-    }
-
     dir(platformDir) {
-      sh "PLATFORM=${platform} ${includeEnv} pkg-build.sh"
+      sh "PLATFORM=${platform} pkg-build.sh"
     }
   }
 }
@@ -32,16 +27,11 @@ pipeline {
     timeout(time: 3, unit: 'HOURS')
     buildDiscarder(logRotator(numToKeepStr: '10'))
   }
-  
-  parameters {
-    booleanParam(name: 'INCLUDE_BUILD_NUMBER', defaultValue: true, description: 'Include build number into rpm name')
-  }
 
   environment {
     PKG_TAG = "${env.BRANCH_NAME}"
     PACKAGES_VOLUME = "pkg-vol-${env.BUILD_TAG}"
     STAGE_AREA_VOLUME = "sa-vol-${env.BUILD_TAG}"
-    PKG_BUILD_NUMBER = "${env.BUILD_NUMBER}"
     PLATFORMS = "centos6 centos7"
     DOCKER_REGISTRY_HOST = "${env.DOCKER_REGISTRY_HOST}"
     DOCKER_ARGS = "--rm -v /opt/cnafsd/helper-scripts/scripts/:/usr/local/bin"
@@ -66,7 +56,7 @@ pipeline {
       steps {
         script {
           def buildStages = PLATFORMS.split(' ').collectEntries {
-            [ "${it} build packages" : buildPackages(it, platform2Dir, "${params.INCLUDE_BUILD_NUMBER}" ) ]
+            [ "${it} build packages" : buildPackages(it, platform2Dir) ]
           }
           parallel buildStages
         }

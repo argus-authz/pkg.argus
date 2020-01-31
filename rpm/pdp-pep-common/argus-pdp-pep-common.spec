@@ -66,7 +66,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/java
 %{_datadir}/java/%{name}.jar
 %{_datadir}/java/%{name}-%{jar_version}.jar
-#%{_datadir}/doc/%{name}-%{jar_version} README.md 
 %{_datadir}/doc/%{name}-%{jar_version}/RELEASE-NOTES
 %{_datadir}/doc/%{name}-%{jar_version}/COPYRIGHT
 %{_datadir}/doc/%{name}-%{jar_version}/LICENSE

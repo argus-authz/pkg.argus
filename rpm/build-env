@@ -1,7 +1,7 @@
 # Components list - Default value is the complete list
 COMPONENTS="pep-common pep-api-c pdp-pep-common pep-server pdp"
 
-PKG_TAG=nightly
+PKG_TAG=v1.7.3
 
 # Comment out this if you want to skip pkg.base image pull
 #SKIP_PKG_BASE_PULL_IMAGE=1

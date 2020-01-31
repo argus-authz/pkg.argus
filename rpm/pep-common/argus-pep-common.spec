@@ -68,7 +68,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.md doc/RELEASE-NOTES doc/COPYRIGHT doc/Hessian.LICENSE doc/LICENSE
 
 %changelog
-* Fri Jan 31 2019 Enrico Vianello <enrico.vianello@cnaf.infn.it> 2.3.2-0
+* Fri Jan 31 2020 Enrico Vianello <enrico.vianello@cnaf.infn.it> 2.3.2-0
 - Bumped version to 2.3.2-0
 
 * Sun Feb 7 2016 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 2.3.1-0

@@ -5,11 +5,7 @@
 %global base_version 1.5.2
 %global base_release 0
 
-%if 0%{?rhel} == 5
-%define jdk_version 1.7.0
-%else
 %define jdk_version 1.8.0
-%endif
 
 %if 0%{?rhel} >= 7 || 0%{?fedora} >= 21
 %define maven maven

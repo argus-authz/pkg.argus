@@ -1,14 +1,10 @@
 ## Turn off meaningless jar repackaging on SL6
 %define __jar_repack 0
 
-%global base_version 2.3.1
-%global base_release 1
+%global base_version 2.3.2
+%global base_release 0
 
-%if 0%{?rhel} == 5
-%define jdk_version 1.7.0
-%else
 %define jdk_version 1.8.0
-%endif
 
 %if 0%{?rhel} >= 7 || 0%{?fedora} >= 21
 %define maven maven
@@ -72,6 +68,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.md doc/RELEASE-NOTES doc/COPYRIGHT doc/Hessian.LICENSE doc/LICENSE
 
 %changelog
+* Fri Jan 31 2019 Enrico Vianello <enrico.vianello@cnaf.infn.it> 2.3.2-0
+- Bumped version to 2.3.2-0
+
 * Sun Feb 7 2016 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 2.3.1-0
 - Upstream version 2.3.1
 

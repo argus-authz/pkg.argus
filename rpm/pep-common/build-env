@@ -5,4 +5,4 @@ PKG_REPO=git://github.com/argus-authz/pkg.argus.git
 PKG_TAG=master
 PKG_SPEC_FILE=argus-pep-common/rpm/pep-common/argus-pep-common.spec
 PKG_STAGE_RPMS=1
-TARBALL_VERSION=2.3.1
+TARBALL_VERSION=2.3.2

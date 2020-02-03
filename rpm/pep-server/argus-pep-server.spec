@@ -3,7 +3,7 @@
 
 %global jar_version  1.7.4
 %global base_version 1.7.4
-%global base_release 0
+%global base_release 1
 
 %if 0%{?rhel} == 5
 %define jdk_version 1.7.0
@@ -203,8 +203,11 @@ fi
 %endif
 
 %changelog
+* Mon Feb 3 2020 Enrico Vianello <enrico.vianello@cnaf.infn.it> 1.7.4-1
+- Moved to 1.7.4-1
+
 * Thu Jan 9 2020 Enrico Vianello <enrico.vianello@cnaf.infn.it> 1.7.4-0
-- Bumped version to 1.7.3-0
+- Bumped version to 1.7.4-0
 
 * Mon Jan 9 2017 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 1.7.3-1
 - Pre-release packaging for 1.7.3

@@ -1,5 +1,5 @@
 %global base_version 2.3.1
-%global base_release 0
+%global base_release 1
 
 %if %{?build_number:1}%{!?build_number:0}
 %define release_version 0.build.%{build_number}
@@ -100,6 +100,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc src/example
 
 %changelog
+* Mon Feb 3 2020 Enrico Vianello <enrico.vianello@cnaf.infn.it> 2.3.1-1
+- Moved to 2.3.1-1
+
 * Fri Jan 24 2020 Enrico Vianello <enrico.vianello@cnaf.infn.it> 2.3.1-0
 - Prepare for 2.3.1 release
 

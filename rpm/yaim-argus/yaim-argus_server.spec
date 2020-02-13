@@ -33,7 +33,7 @@ License: ASL 2.0
 Group: System Environment/Libraries
 URL: https://twiki.cern.ch/twiki/bin/view/EGEE/AuthorizationFramework
 
-Source: %{name}.tar.gz
+Source: yaim-argus-server-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch: noarch
 
@@ -44,10 +44,13 @@ Requires: glite-yaim-bdii
 %description
 yaim configuration for the ARGUS_server node-type (EMI)
 
+
 %prep
 %setup -q -n yaim-argus-server-%{version}
 
+
 %build
+
 
 %install
 rm -rf $RPM_BUILD_ROOT

@@ -46,7 +46,7 @@ yaim configuration for the ARGUS_server node-type (EMI)
 
 
 %prep
-%setup -q -n yaim-argus_server
+%setup -q -n %{name}-%{version}
 
 %build
 

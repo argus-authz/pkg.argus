@@ -33,7 +33,7 @@ License: ASL 2.0
 Group: System Environment/Libraries
 URL: https://twiki.cern.ch/twiki/bin/view/EGEE/AuthorizationFramework
 
-Source: yaim-argus-server-%{version}.tar.gz
+Source: %{name}-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch: noarch
 

@@ -46,16 +46,13 @@ yaim configuration for the ARGUS_server node-type (EMI)
 
 
 %prep
-%setup -q -n yaim-argus-server-%{version}
-
+%setup -q -n yaim-argus_server
 
 %build
-
 
 %install
 rm -rf $RPM_BUILD_ROOT
 make DESTDIR=$RPM_BUILD_ROOT install
-
 
 %clean
 rm -rf $RPM_BUILD_ROOT

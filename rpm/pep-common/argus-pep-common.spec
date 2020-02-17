@@ -2,7 +2,7 @@
 %define __jar_repack 0
 
 %global base_version 2.3.2
-%global base_release 0
+%global base_release 1
 
 %define jdk_version 1.8.0
 
@@ -68,6 +68,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.md doc/RELEASE-NOTES doc/COPYRIGHT doc/Hessian.LICENSE doc/LICENSE
 
 %changelog
+* Mon Feb 3 2020 Enrico Vianello <enrico.vianello@cnaf.infn.it> 2.3.2-1
+- Moved to 2.3.2-1
+
 * Fri Jan 31 2020 Enrico Vianello <enrico.vianello@cnaf.infn.it> 2.3.2-0
 - Bumped version to 2.3.2-0
 

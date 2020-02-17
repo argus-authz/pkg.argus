@@ -2,13 +2,9 @@
 %define __jar_repack 0
 
 %global base_version 2.3.0
-%global base_release 0
+%global base_release 1
 
-%if 0%{?rhel} == 5
-%define jdk_version 1.7.0
-%else
 %define jdk_version 1.8.0
-%endif
 
 %if 0%{?rhel} >= 7 || 0%{?fedora} >= 21
 %define maven maven
@@ -74,6 +70,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc README.md doc/RELEASE-NOTES doc/COPYRIGHT doc/LICENSE src/example/java
 
 %changelog
+* Mon Jan 3 2020 Enrico Vianello <enrico.vianello@cnaf.infn.it> 2.3.0-1
+- Moved to age 1
+
 * Mon Feb 8 2016 Andrea Ceccanti <andrea.ceccanti@cnaf,infn.it> 2.3.0-0
 - Upstream version 2.3.0
 

@@ -1,5 +1,6 @@
 # Components list - Default value is the complete list
-COMPONENTS="pap pdp-pep-common pep-common pdp pep-server pep-api-c pep-api-java pepcli gsi-pep-callout"
+COMPONENTS_centos6="pap pdp-pep-common pep-common pep-api-java pep-api-c pep-server pdp pepcli gsi-pep-callout yaim-argus"
+COMPONENTS_centos7="pap pdp-pep-common pep-common pep-api-java pep-api-c pep-server pdp pepcli gsi-pep-callout"
 
 PKG_TAG=nightly
 

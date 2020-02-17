@@ -32,10 +32,6 @@ pipeline {
     timeout(time: 3, unit: 'HOURS')
     buildDiscarder(logRotator(numToKeepStr: '10'))
   }
-  
-  parameters {
-    booleanParam(name: 'INCLUDE_BUILD_NUMBER', defaultValue: true, description: 'Include build number into rpm name')
-  }
 
   environment {
     PKG_TAG = "${env.BRANCH_NAME}"
@@ -66,7 +62,7 @@ pipeline {
       steps {
         script {
           def buildStages = PLATFORMS.split(' ').collectEntries {
-            [ "${it} build packages" : buildPackages(it, platform2Dir, "${params.INCLUDE_BUILD_NUMBER}" ) ]
+            [ "${it} build packages" : buildPackages(it, platform2Dir, false) ]
           }
           parallel buildStages
         }

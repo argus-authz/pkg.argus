@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-%global base_version 1.6.0
+%global base_version 1.6.1
 %global base_release 1
 
 %if %{?build_number:1}%{!?build_number:0}
@@ -76,6 +76,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc COPYRIGHT LICENSE README.md
 
 %changelog
+* Mon Feb 17 2020 Enrico Vianello <enrico.vianello@cnaf.infn.it> 1.6.1-1
+- Moved to version 1.6.1-1
+
 * Mon Dec 3 2012 Valery Tschopp <valery.tschopp@switch.ch> 1.6.0-1
 - Upstream version 1.6.0 for EMI-3.
 

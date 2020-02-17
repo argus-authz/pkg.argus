@@ -1,5 +1,6 @@
 # Components list - Default value is the complete list
-COMPONENTS="pep-common pep-api-java pep-api-c pdp-pep-common pep-server pdp"
+COMPONENTS_CENTOS6="pep-common pep-api-java pep-api-c pdp-pep-common pep-server pdp yaim-argus"
+COMPONENTS_CENTOS7="pep-common pep-api-java pep-api-c pdp-pep-common pep-server pdp"
 
 PKG_TAG=v1.7.3
 

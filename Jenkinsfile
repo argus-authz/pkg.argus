@@ -33,10 +33,13 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '10'))
   }
 
+  triggers { cron '@daily' }
+
   environment {
     PKG_TAG = "${env.BRANCH_NAME}"
     PACKAGES_VOLUME = "pkg-vol-${env.BUILD_TAG}"
     STAGE_AREA_VOLUME = "sa-vol-${env.BUILD_TAG}"
+    PKG_INCLUDE_BUILD_NUMBER = 1
     PKG_BUILD_NUMBER = "${env.BUILD_NUMBER}"
     PLATFORMS = "centos6 centos7"
     DOCKER_REGISTRY_HOST = "${env.DOCKER_REGISTRY_HOST}"

@@ -2,8 +2,8 @@
 %define __jar_repack 0
 %define __os_install_post %{nil}
 
-%global base_version 1.7.2
-%global base_release 1
+%global base_version 1.7.3
+%global base_release 0
 
 %if 0%{?rhel} == 5
 %define jdk_version 1.7.0
@@ -163,6 +163,9 @@ fi
 %endif
 
 %changelog
+* Mon May 10 2021 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 1.7.3-0
+- Packaging for 1.7.3
+
 * Fri Jun 23 2017 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 1.7.2-1
 - Packaging for 1.7.2
 

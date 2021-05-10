@@ -1,8 +1,7 @@
 # Components list - Default value is the complete list
-COMPONENTS_centos6="pep-common pep-api-java pep-api-c pdp-pep-common pep-server pdp yaim-argus"
-COMPONENTS_centos7="pep-common pep-api-java pep-api-c pdp-pep-common pep-server pdp"
+COMPONENTS_centos7="pap"
 
-PKG_TAG=v1.7.3
+PKG_TAG=v1.7.4
 
 # Comment out this if you want to skip pkg.base image pull
 #SKIP_PKG_BASE_PULL_IMAGE=1
@@ -11,7 +10,7 @@ PKG_TAG=v1.7.3
 PKG_STAGE_RPMS=1
 
 # Set to 1 if you want to add build number on enabled rpms
-#INCLUDE_BUILD_NUMBER=1
+INCLUDE_BUILD_NUMBER=1
 
 # Comment out this if you want to test locally the changes
 #PKG_REPO=/code/pkg.argus

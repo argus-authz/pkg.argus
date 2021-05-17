@@ -1,7 +1,6 @@
 BUILD_NAME=argus-pap
 BUILD_REPO=git://github.com/argus-authz/argus-pap
-BUILD_TAG=1_7
+BUILD_TAG=issue-20-harcoded-tls-protocol
 PKG_REPO=git://github.com/argus-authz/pkg.argus.git
-# PKG_TAG=release/1.7.2
 PKG_SPEC_FILE=argus-pap/rpm/pap/argus-pap.spec
-TARBALL_VERSION=1.7.2
+TARBALL_VERSION=1.7.3

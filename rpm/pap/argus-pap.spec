@@ -2,8 +2,8 @@
 %define __jar_repack 0
 %define __os_install_post %{nil}
 
-%global base_version 1.7.2
-%global base_release 1
+%global base_version 1.7.3
+%global base_release 0
 
 %if 0%{?rhel} == 5
 %define jdk_version 1.7.0
@@ -76,8 +76,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %pre
 # Stop service on update
-if [ $1 -gt 1 ] ; then
-    /sbin/service argus-pap stop > /dev/null 2>&1 || :
+if [ $1 -gt 1 ]; then
+	
+    /usr/bin/systemctl stop argus-pap > /dev/null 2>&1 || :
 
     # Remove old jars
     if [ -d "/var/lib/argus/pap/lib" ]; then
@@ -93,23 +94,15 @@ if [ `pidof systemd` ]; then
 fi
 
 %preun
-if [ $1 -eq 0 ] ; then
-    /sbin/service argus-pap stop > /dev/null 2>&1 || :
-	if [ ! `pidof systemd` ]; then
-    	/sbin/chkconfig --del argus-pap
-	fi
+if [ $1 -eq 0 ]; then
+    /usr/bin/systemctl stop argus-pap > /dev/null 2>&1 || :
 fi
 
-
-# register the service in init.d
-if [ $1 -eq 1 && ! `pidof systemd` ]; then
-    /sbin/chkconfig --add argus-pap
-fi
 
 %postun
-if [ $1 -eq 1 ] ; then
+if [ $1 -eq 1 ]; then
     # Restart the service after the update
-    /sbin/service argus-pap start > /dev/null 2>&1 || :
+    /usr/bin/systemctl restart argus-pap > /dev/null 2>&1 || :
 fi
 
 %files
@@ -163,6 +156,9 @@ fi
 %endif
 
 %changelog
+* Mon May 10 2021 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 1.7.3-0
+- Packaging for 1.7.3
+
 * Fri Jun 23 2017 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 1.7.2-1
 - Packaging for 1.7.2
 

@@ -1,9 +1,9 @@
 # Turn off the brp-java-repack-jars script
 %global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-java-repack-jars[[:space:]].*$!!g')
 
-%global jar_version  1.7.4
-%global base_version 1.7.4
-%global base_release 1
+%global jar_version  1.7.5
+%global base_version 1.7.5
+%global base_release 0
 
 %if 0%{?rhel} == 5
 %define jdk_version 1.7.0
@@ -203,6 +203,9 @@ fi
 %endif
 
 %changelog
+* Mon May 24 2021 Federica Agostini <federica.agostini@cnaf.infn.it> 1.7.5-0
+- Packaging for 1.7.5
+
 * Mon Feb 3 2020 Enrico Vianello <enrico.vianello@cnaf.infn.it> 1.7.4-1
 - Moved to 1.7.4-1
 

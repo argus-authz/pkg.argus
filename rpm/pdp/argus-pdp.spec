@@ -1,8 +1,8 @@
 # Turn off the brp-java-repack-jars script
 %global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-java-repack-jars[[:space:]].*$!!g')
 
-%global base_version 1.7.1
-%global base_release 1
+%global base_version 1.7.2
+%global base_release 0
 
 %define jdk_version 1.8.0
 
@@ -194,6 +194,9 @@ fi
 %endif
 
 %changelog
+* Mon May 25 2021 Federica Agostini <federica.agostini@cnaf.infn.it> 1.7.2-0
+- Packaging for 1.7.2
+
 * Mon Feb 3 2020 Enrico Vianello <enrico.vianello@cnaf.infn.it> 1.7.1-1
 - Moved to 1.7.1-1
 

@@ -138,7 +138,6 @@ fi
 %dir %{_localstatedir}/lib/argus/pdp/lib
 %{_localstatedir}/lib/argus/pdp/lib/argus-pdp-%{version}.jar
 %{_localstatedir}/lib/argus/pdp/lib/asm-*.jar
-%{_localstatedir}/lib/argus/pdp/lib/activation-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/commons-codec-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/commons-collections-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/commons-httpclient-*.jar
@@ -151,9 +150,6 @@ fi
 %{_localstatedir}/lib/argus/pdp/lib/ini4j-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/javax.*.jar
 %{_localstatedir}/lib/argus/pdp/lib/javax-websocket-*.jar
-%{_localstatedir}/lib/argus/pdp/lib/jaxb-api-*.jar
-%{_localstatedir}/lib/argus/pdp/lib/jaxb-impl-*.jar
-%{_localstatedir}/lib/argus/pdp/lib/jaxb-xjc-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/jcl-over-slf4j-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/jetty-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/jetty-*.pom
@@ -167,7 +163,6 @@ fi
 %{_localstatedir}/lib/argus/pdp/lib/opensaml-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/openws-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/slf4j-api-*.jar
-%{_localstatedir}/lib/argus/pdp/lib/stax-api-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/velocity-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/websocket-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/xmlsec-*.jar
@@ -194,7 +189,7 @@ fi
 %endif
 
 %changelog
-* Mon May 25 2021 Federica Agostini <federica.agostini@cnaf.infn.it> 1.7.2-0
+* Tue May 25 2021 Federica Agostini <federica.agostini@cnaf.infn.it> 1.7.2-0
 - Packaging for 1.7.2
 
 * Mon Feb 3 2020 Enrico Vianello <enrico.vianello@cnaf.infn.it> 1.7.1-1

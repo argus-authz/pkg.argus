@@ -10,7 +10,7 @@ PKG_TAG=v1.7.4
 PKG_STAGE_RPMS=1
 
 # Set to 1 if you want to add build number on enabled rpms
-INCLUDE_BUILD_NUMBER=1
+#INCLUDE_BUILD_NUMBER=1
 
 # Comment out this if you want to test locally the changes
 #PKG_REPO=/code/pkg.argus

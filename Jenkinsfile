@@ -1,3 +1,6 @@
+#!/usr/bin/env groovy
+
+
 def platform2Dir = [
   "centos7" : 'rpm'
 ]
@@ -34,6 +37,10 @@ pipeline {
 
   triggers { cron '@daily' }
 
+  parameters {
+    booleanParam(name: 'INCLUDE_BUILD_NUMBER', defaultValue: false, description: 'Include build number into rpm name')
+  }
+
   environment {
     PKG_TAG = "${env.BRANCH_NAME}"
     PACKAGES_VOLUME = "pkg-vol-${env.BUILD_TAG}"
@@ -61,8 +68,11 @@ pipeline {
     stage('package') {
       steps {
         script {
+          if (params.INCLUDE_BUILD_NUMBER) {
+            env.INCLUDE_BUILD_NUMBER = '1'
+          }
           def buildStages = PLATFORMS.split(' ').collectEntries {
-            [ "${it} build packages" : buildPackages(it, platform2Dir, false) ]
+            [ "${it} build packages" : buildPackages(it, platform2Dir, params.INCLUDE_BUILD_NUMBER) ]
           }
           parallel buildStages
         }

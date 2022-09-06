@@ -3,7 +3,7 @@
 
 %global jar_version 1.5.2
 %global base_version 1.5.2
-%global base_release 1
+%global base_release 0
 
 %define jdk_version 1.8.0
 
@@ -72,9 +72,6 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
-* Mon Feb 3 2020 Enrico Vianello <enrico.vianello@cnaf.infn.it> 1.5.2-1
-- Moved to 1.5.2-1
-
 * Tue Sep 10 2019 Enrico Vianello <enrico.vianello@cnaf.infn.it> 1.5.2-0
 - Packaging for 1.5.2-0
 

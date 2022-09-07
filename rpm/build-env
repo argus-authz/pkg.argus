@@ -1,5 +1,5 @@
 # Components list - Default value is the complete list
-COMPONENTS_centos7="pap pdp-pep-common pep-server pdp pep-api-c"
+COMPONENTS="pap pdp-pep-common pep-server pdp pep-api-c"
 
 PKG_TAG=v0922.01
 

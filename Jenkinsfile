@@ -1,8 +1,8 @@
 #!/usr/bin/env groovy
 
-
 def platform2Dir = [
-  "centos7" : 'rpm'
+  "centos7" : 'rpm',
+  "centos7java11" : 'rpm'
 ]
 
 def buildPackages(platform, platform2Dir, includeBuildNumber) {
@@ -38,7 +38,7 @@ pipeline {
   triggers { cron '@daily' }
 
   parameters {
-    booleanParam(name: 'INCLUDE_BUILD_NUMBER', defaultValue: false, description: 'Include build number into rpm name')
+    booleanParam(name: 'INCLUDE_BUILD_NUMBER', defaultValue: true, description: 'Include build number into rpm name')
   }
 
   environment {
@@ -46,7 +46,7 @@ pipeline {
     PACKAGES_VOLUME = "pkg-vol-${env.BUILD_TAG}"
     STAGE_AREA_VOLUME = "sa-vol-${env.BUILD_TAG}"
     PKG_BUILD_NUMBER = "${env.BUILD_NUMBER}"
-    PLATFORMS = "centos7"
+    PLATFORMS = "centos7java11"
     DOCKER_ARGS = "--rm -v /opt/cnafsd/helper-scripts/scripts/:/usr/local/bin"
   }
 

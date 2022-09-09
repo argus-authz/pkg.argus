@@ -1,6 +1,6 @@
 BUILD_NAME=argus-pep-server
 BUILD_REPO=https://github.com/argus-authz/argus-pep-server.git
-BUILD_TAG=v1.7.4
+BUILD_TAG=develop
 PKG_REPO=https://github.com/argus-authz/pkg.argus.git
 PKG_SPEC_FILE=argus-pep-server/rpm/pep-server/argus-pep-server.spec
 TARBALL_VERSION=1.7.4

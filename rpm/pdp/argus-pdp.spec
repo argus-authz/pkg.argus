@@ -152,8 +152,6 @@ fi
 %{_localstatedir}/lib/argus/pdp/lib/javax.*.jar
 %{_localstatedir}/lib/argus/pdp/lib/javax-websocket-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/jaxb-api-*.jar
-%{_localstatedir}/lib/argus/pdp/lib/jaxb-impl-*.jar
-%{_localstatedir}/lib/argus/pdp/lib/jaxb-xjc-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/jcl-over-slf4j-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/jetty-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/jetty-*.pom

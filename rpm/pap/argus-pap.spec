@@ -3,7 +3,7 @@
 %define __os_install_post %{nil}
 
 %global base_version 1.7.3
-%global base_release 0
+%global base_release 1
 
 %if 0%{?rhel} == 5
 %define jdk_version 1.7.0
@@ -156,6 +156,9 @@ fi
 %endif
 
 %changelog
+* Fri Sep 9 2022 Enrico Vianello <enrico.vianello@cnaf.infn.it> 1.7.3-1
+- Packaging for 1.7.3-1
+
 * Mon May 10 2021 Andrea Ceccanti <andrea.ceccanti@cnaf.infn.it> 1.7.3-0
 - Packaging for 1.7.3
 

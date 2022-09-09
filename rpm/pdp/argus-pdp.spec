@@ -2,7 +2,7 @@
 %global __os_install_post %(echo '%{__os_install_post}' | sed -e 's!/usr/lib[^[:space:]]*/brp-java-repack-jars[[:space:]].*$!!g')
 
 %global base_version 1.7.1
-%global base_release 0
+%global base_release 1
 
 %define jdk_version 1.8.0
 
@@ -192,6 +192,9 @@ fi
 %endif
 
 %changelog
+* Fri Sep 9 2022 Enrico Vianello <enrico.vianello@cnaf.infn.it> 1.7.1-1
+- Packaging for 1.7.1-1
+
 * Fri Jan 24 2020 Enrico Vianello <enrico.vianello@cnaf.infn.it> 1.7.1-0
 - Pre-release packaging for 1.7.1
 

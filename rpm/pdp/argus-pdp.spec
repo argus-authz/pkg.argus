@@ -171,8 +171,6 @@ fi
 %{_localstatedir}/lib/argus/pdp/lib/xmlsec-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/xmltooling-*.jar
 %dir %{_localstatedir}/lib/argus/pdp/lib/endorsed
-%{_localstatedir}/lib/argus/pdp/lib/endorsed/serializer-*.jar
-%{_localstatedir}/lib/argus/pdp/lib/endorsed/xalan-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/endorsed/xercesImpl-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/endorsed/xml-apis-*.jar
 %{_localstatedir}/lib/argus/pdp/lib/endorsed/xml-resolver-*.jar

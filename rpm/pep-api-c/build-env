@@ -2,7 +2,6 @@ BUILD_NAME=argus-pep-api-c
 BUILD_REPO=https://github.com/argus-authz/argus-pep-api-c
 BUILD_TAG=2_3
 PKG_REPO=https://github.com/argus-authz/pkg.argus.git
-PKG_TAG=master
 PKG_SPEC_FILE=argus-pep-api-c/rpm/pep-api-c/argus-pep-api-c.spec
 PKG_PREBUILD_SCRIPT=argus-pep-api-c/rpm/pep-api-c/pre-build.sh
 PKG_STAGE_RPMS=1

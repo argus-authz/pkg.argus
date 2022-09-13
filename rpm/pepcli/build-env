@@ -2,7 +2,6 @@ BUILD_NAME=argus-pepcli
 BUILD_REPO=git://github.com/argus-authz/argus-pep-cli
 BUILD_TAG=2_2
 PKG_REPO=git://github.com/argus-authz/pkg.argus.git
-PKG_TAG=master
 PKG_SPEC_FILE=argus-pepcli/rpm/pepcli/argus-pepcli.spec
 PKG_PREBUILD_SCRIPT=argus-pepcli/rpm/pepcli/pre-build.sh
 TARBALL_VERSION=2.2.0

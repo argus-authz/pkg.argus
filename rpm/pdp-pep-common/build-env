@@ -3,6 +3,5 @@ BUILD_REPO=https://github.com/argus-authz/argus-pdp-pep-common.git
 BUILD_TAG=develop
 TARBALL_VERSION=1.5.2
 PKG_REPO=https://github.com/argus-authz/pkg.argus.git
-PKG_TAG=master
 PKG_SPEC_FILE=argus-pdp-pep-common/rpm/pdp-pep-common/argus-pdp-pep-common.spec
 PKG_STAGE_RPMS=1

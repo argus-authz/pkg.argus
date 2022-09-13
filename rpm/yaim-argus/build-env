@@ -3,5 +3,4 @@ BUILD_REPO=git://github.com/argus-authz/yaim-argus-server
 BUILD_TAG=develop
 PKG_REPO=git://github.com/argus-authz/pkg.argus.git
 PKG_SPEC_FILE=yaim-argus_server/rpm/yaim-argus/yaim-argus_server.spec
-PKG_TAG=v1.7.3
 TARBALL_VERSION=1.6.1

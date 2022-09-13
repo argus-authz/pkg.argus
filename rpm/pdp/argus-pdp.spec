@@ -40,7 +40,7 @@ Requires: java-%{jdk_version}-openjdk
 Requires: jpackage-utils
 Requires: redhat-lsb
 Requires: argus-pdp-pep-common >= 1.5
-Requires: voms-api-java
+Requires: voms-api-java >= 3.3.2
 
 %description
 Argus PDP (Policy Decision Point).
